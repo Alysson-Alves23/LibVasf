@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Configurações da conexão com o banco de dados -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/seu_banco</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">senha</property>
+
+        <!-- Dialeto do Hibernate para MySQL -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Configurações adicionais -->
+        <property name="hibernate.show_sql">true</property> <!-- Mostra o SQL gerado -->
+        <property name="hibernate.hbm2ddl.auto">update</property> <!-- Atualiza o esquema automaticamente -->
+
+        <!-- Mapeamento de entidades
+        <mapping class="com.libvasf.models"/>-->
+    </session-factory>
+</hibernate-configuration>
