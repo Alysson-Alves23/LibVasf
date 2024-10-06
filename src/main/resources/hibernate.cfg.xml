@@ -4,12 +4,6 @@
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <!-- Configurações da conexão com o banco de dados -->
-        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/seu_banco</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">senha</property>
-
         <!-- Dialeto do Hibernate para MySQL -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
@@ -17,7 +11,12 @@
         <property name="hibernate.show_sql">true</property> <!-- Mostra o SQL gerado -->
         <property name="hibernate.hbm2ddl.auto">update</property> <!-- Atualiza o esquema automaticamente -->
 
-        <!-- Mapeamento de entidades
-        <mapping class="com.libvasf.models"/>-->
+          <!-- Mapeamento de entidades -->
+        <mapping class="com.libvasf.models.Cliente"/>
+        <mapping class="com.libvasf.models.Usuario"/>
+        <mapping class="com.libvasf.models.Livro"/>
+        <mapping class="com.libvasf.models.Autor"/>
+        <mapping class="com.libvasf.models.Emprestimo"/>
+        <mapping class="com.libvasf.models.Publicacao"/>
     </session-factory>
 </hibernate-configuration>

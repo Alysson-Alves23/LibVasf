@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.usuario.LoginController">
+
+    
+
+    <!-- Caixa de entrada (VBox para centralizar os inputs) -->
+    <VBox alignment="CENTER" layoutX="3.0" layoutY="2.0" prefHeight="170.0" prefWidth="298.0" spacing="10" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <TextField fx:id="usernameField" promptText="Username" />
+         <PasswordField fx:id="passwordField" promptText="Senha" />
+
+        <!-- Campo Username -->
+        <VBox alignment="CENTER" spacing="5" />
+         <Button fx:id="loginButton" prefHeight="25.0" prefWidth="74.0" text="Login" />
+
+        <!-- Campo Senha -->
+        <VBox alignment="CENTER" spacing="5" />
+
+        <!-- Botões de Login e Cadastro -->
+        <VBox alignment="CENTER" spacing="10">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+        </VBox>
+      <Button fx:id="registerButton" layoutX="48.0" layoutY="90.0" prefHeight="25.0" prefWidth="74.0" text="Cadastro" />
+      <padding>
+         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      </padding>
+
+    </VBox>
+</AnchorPane>
