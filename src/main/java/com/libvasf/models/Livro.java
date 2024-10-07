@@ -27,6 +27,8 @@ public class Livro {
     @Column(name = "livro_disponivel", nullable = false)
     private Boolean disponivel;
 
+    @Column(name = "livro_copias", nullable = false)
+    private int copias;
     @OneToMany(mappedBy = "livro")
     private List<Emprestimo> emprestimos;
 
@@ -87,5 +89,9 @@ public class Livro {
 
     public void setPublicacoes(List<Publicacao> publicacoes) {
         this.publicacoes = publicacoes;
+    }
+
+
+    public void setNumeroCopias(int i) {
     }
 }

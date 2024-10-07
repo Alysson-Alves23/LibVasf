@@ -1,6 +1,7 @@
 package com.libvasf.models;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -29,7 +30,8 @@ public class Emprestimo {
 
     @Column(name = "emprestimo_datetime_fim")
     private LocalDateTime dataHoraFim;
-
+    @Column(name = "IsActive", nullable = false)
+    private int isActive;
     public Long getId() {
         return id;
     }
@@ -76,5 +78,13 @@ public class Emprestimo {
 
     public void setDataHoraFim(LocalDateTime dataHoraFim) {
         this.dataHoraFim = dataHoraFim;
+    }
+
+    public void setDataEmprestimo(LocalDate now) {
+    }
+
+    public boolean isClosed() {
+
+        return false;
     }
 }

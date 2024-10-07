@@ -20,7 +20,8 @@ public class Cliente {
 
     @Column(name = "cliente_email", length = 45, nullable = false)
     private String email;
-
+    @Column(name = "cliente_telefone", length = 45, nullable = false)
+    private String telefone;
     @Column(name = "cliente_senha", length = 45, nullable = false)
     private String senha;
 
@@ -73,5 +74,8 @@ public class Cliente {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public void setTelefone(String number) {
     }
 }

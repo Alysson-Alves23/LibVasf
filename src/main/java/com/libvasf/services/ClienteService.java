@@ -59,4 +59,8 @@ public class ClienteService {
             session.close();
         }
     }
+
+    public void editarCliente(Cliente cliente) {
+
+    }
 }

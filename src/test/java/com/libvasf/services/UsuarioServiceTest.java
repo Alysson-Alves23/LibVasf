@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @ExtendWith(MockitoExtension.class)
-class UsuarioServiceTest {
+public class UsuarioServiceTest {
 
     private static final Logger logger = Logger.getLogger(UsuarioServiceTest.class.getName());
 
