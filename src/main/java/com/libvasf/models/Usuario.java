@@ -11,23 +11,20 @@ import java.util.List;
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "usuario_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id ;
 
-    @Column(name = "usuario_nome", length = 45, nullable = false)
+    @Column(name = "nome", length = 45, unique = true,nullable = false)
     private String nome;
 
-    @Column(name = "usuario_cpf", length = 45, nullable = false)
-    private String cpf;
-
-    @Column(name = "usuario_email", length = 45, nullable = false)
+    @Column(name = "email", length = 45, unique = true,nullable = false)
     private String email;
 
-    @Column(name = "usuario_senha", length = 45, nullable = false)
+    @Column(name = "senha", length = 45, nullable = false)
     private String senha;
 
-    @Column(name = "usuario_isAdmin", nullable = false)
+    @Column(name = "isAdmin", nullable = false)
     private int isAdmin = 0;
 
     @OneToMany(mappedBy = "usuario")
@@ -47,14 +44,6 @@ public class Usuario {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public String getEmail() {

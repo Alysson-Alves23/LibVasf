@@ -6,6 +6,8 @@ module com.libvasf{
     requires java.persistence;
     requires java.naming;
     requires java.sql;
+    requires org.jboss.jandex;
+    requires org.slf4j;
 
     opens com.libvasf.models to org.hibernate.orm.core;
     opens com.libvasf.controllers to javafx.fxml;
@@ -13,5 +15,7 @@ module com.libvasf{
     exports com.libvasf;
     exports com.libvasf.controllers;
     exports com.libvasf.controllers.usuario;
+    exports com.libvasf.controllers.usuario.viewControllers;
+    opens com.libvasf.controllers.usuario.viewControllers to javafx.fxml;
 
 }

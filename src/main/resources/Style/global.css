@@ -1,0 +1,39 @@
+.root {
+    -primary-color: #DEE3E9;
+    -secondary-color: #F8F8F8;
+    -font-color: #000000;
+}
+
+.NavLink {
+    -fx-text-fill: -font-color;
+}
+
+.text-field {
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-border-color: black;
+    -fx-background-color: -primary-color;
+    -fx-border-width: 1;
+    -fx-padding: 5;
+}
+
+.button {
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-border-color: black;
+    -fx-text-fill: -font-color;
+    -fx-background-color: -primary-color;
+    -fx-border-width: 1;
+}
+
+.button:hover {
+    -fx-background-color: -secondary-color;
+    -fx-cursor: hand;
+}
+
+.Background {
+    -fx-background-color: -primary-color;
+}
+
+.TextField {
+}
