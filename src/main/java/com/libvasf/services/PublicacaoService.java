@@ -20,5 +20,6 @@ public class PublicacaoService {
     }
 
     public void editarPublicacao(Publicacao publicacao) {
+
     }
 }
