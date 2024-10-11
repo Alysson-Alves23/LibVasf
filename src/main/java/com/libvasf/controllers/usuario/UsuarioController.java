@@ -15,24 +15,24 @@ public class UsuarioController {
     /**
      * Método para realizar o login de um usuário.
      *
-     * @param usuario Nome do usuário.
+     * @param email Nome do usuário.
      * @param senha   Senha do usuário.
      * @return true se o login for bem-sucedido, false caso contrário.
      */
-    public static boolean login(String usuario, String senha) {
+    public static boolean login(String email, String senha) {
         try {
-            final Usuario user = usuarioService.buscarUsuarioPorNome(usuario);
+            final Usuario user = usuarioService.buscarUsuarioPorEmail(email);
 
             if (user != null && user.getSenha().equals(senha)) {
                 MainApplication.setCurrentUser(user);
-                logger.info("Login bem-sucedido para o usuário: " + usuario);
+                logger.info("Login bem-sucedido para o usuário: " + email);
                 return true;
             } else {
-                logger.warning("Falha no login para o usuário: " + usuario);
+                logger.warning("Falha no login para o usuário: " + email);
                 return false;
             }
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "Erro durante o login do usuário: " + usuario, e);
+            logger.log(Level.SEVERE, "Erro durante o login do usuário: " + email, e);
             return false;
         }
     }
@@ -41,11 +41,11 @@ public class UsuarioController {
      * Método para cadastrar um novo usuário.
      *
      * @param usuario Nome do usuário.
-     * @param email   Email do usuário.
      * @param senha   Senha do usuário.
+     * @param email   Email do usuário.
      * @param isAdmin Indica se o usuário é administrador (1 para sim, 0 para não).
      */
-    public static boolean cadastrarUsuario(String usuario, String email, String senha, int isAdmin) {
+    public static boolean cadastrarUsuario(String usuario, String senha, String email, int isAdmin) {
         try {
             final Usuario user = new Usuario();
             user.setNome(usuario);

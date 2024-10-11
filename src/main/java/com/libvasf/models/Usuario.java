@@ -15,7 +15,7 @@ public class Usuario {
     @Column(name = "id")
     private Long id ;
 
-    @Column(name = "nome", length = 45, unique = true,nullable = false)
+    @Column(name = "nome", length = 45,nullable = false)
     private String nome;
 
     @Column(name = "email", length = 45, unique = true,nullable = false)

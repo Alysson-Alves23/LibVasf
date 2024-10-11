@@ -37,6 +37,23 @@ public class UsuarioService {
         }
     }
 
+    public Usuario buscarUsuarioPorEmail(String email) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Usuario usuario = session.createQuery("from Usuario where email = :email", Usuario.class)
+                    .setParameter("email", email)
+                    .uniqueResult();
+            if (usuario != null) {
+                logger.info("Usuário encontrado pelo nome '" + email + "': " + usuario);
+            } else {
+                logger.warning("Nenhum usuário encontrado com o nome '" + email + "'");
+            }
+            return usuario;
+        } catch (HibernateException he) {
+            logger.log(Level.SEVERE, "Erro ao buscar usuário por nome '" + email + "': " + he.getMessage(), he);
+            throw he;
+        }
+    }
+
     @FunctionalInterface
     private interface SessionAction {
         void execute(Session session) throws HibernateException;

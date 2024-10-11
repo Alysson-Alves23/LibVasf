@@ -10,6 +10,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.transaction.Transactional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @ExtendWith(MockitoExtension.class)
+@Transactional
 public class UsuarioServiceTest {
 
     private static final Logger logger = Logger.getLogger(UsuarioServiceTest.class.getName());
@@ -29,16 +32,16 @@ public class UsuarioServiceTest {
 
     @AfterEach
     void cleanUp() {
-        // Remove os usuários criados durante os testes
-        for (Long userId : usuariosCriados) {
-            try {
-                service.removerUsuario(userId);
-                logger.info("Usuário removido durante o cleanup: ID = " + userId);
-            } catch (Exception e) {
-                logger.log(Level.SEVERE, "Erro ao remover usuário durante o cleanup: ID = " + userId, e);
-            }
-        }
-        usuariosCriados.clear();
+//        // Remove os usuários criados durante os testes
+//        for (Long userId : usuariosCriados) {
+//            try {
+//                service.removerUsuario(userId);
+//                logger.info("Usuário removido durante o cleanup: ID = " + userId);
+//            } catch (Exception e) {
+//                logger.log(Level.SEVERE, "Erro ao remover usuário durante o cleanup: ID = " + userId, e);
+//            }
+//        }
+//        usuariosCriados.clear();
     }
 
     @Nested
@@ -129,8 +132,8 @@ public class UsuarioServiceTest {
         }
 
         @Test
-        @DisplayName("Deve buscar usuário por nome corretamente")
-        void shouldFindUserByName() {
+        @DisplayName("Deve buscar usuário por Email corretamente")
+        void shouldFindUserByEmail() {
             String uniqueEmail = "unique_" + System.currentTimeMillis() + "@example.com";
             Usuario usuario = userMock(uniqueEmail);
 
@@ -138,7 +141,7 @@ public class UsuarioServiceTest {
                 service.salvarUsuario(usuario);
                 usuariosCriados.add(usuario.getId());
 
-                Usuario encontrado = service.buscarUsuarioPorNome(usuario.getNome());
+                Usuario encontrado = service.buscarUsuarioPorEmail(usuario.getEmail());
                 assertNotNull(encontrado, "O usuário deveria ter sido encontrado pelo nome.");
                 assertEquals(usuario.getEmail(), encontrado.getEmail(), "Os emails dos usuários deveriam coincidir.");
                 logger.info("Usuário encontrado pelo nome: " + encontrado);
@@ -175,12 +178,11 @@ public class UsuarioServiceTest {
         }
     }
 
-    // Método para criar um mock de usuário com email padrão
     private Usuario userMock() {
         return userMock("test_" + System.currentTimeMillis() + "@example.com");
     }
 
-    // Sobrecarga do método para permitir especificação de email
+
     private Usuario userMock(String email) {
         Usuario usuario = new Usuario();
         usuario.setNome("John Doe");
