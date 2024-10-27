@@ -23,7 +23,7 @@ public class MainApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         currentStage = stage;
         stage.setTitle("Libvasf");
-        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Logo.png")));
+        Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo.png")));
         stage.getIcons().add(icon);
         stage.setScene(scene);
         stage.setWidth(1440);
