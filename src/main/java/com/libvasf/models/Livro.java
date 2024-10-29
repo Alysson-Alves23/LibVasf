@@ -91,7 +91,11 @@ public class Livro {
         this.publicacoes = publicacoes;
     }
 
+    public int getNumeroCopias() {
+        return this.copias;
+    }
 
     public void setNumeroCopias(int i) {
+        this.copias = i;
     }
 }
