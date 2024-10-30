@@ -48,7 +48,7 @@ public class EmprestimoService {
         emprestimo.setIsActive(true);
 
         executeInsideTransaction(session -> {
-            session.update(emprestimo);
+            session.saveOrUpdate(emprestimo);
             session.update(livro);
             logger.info("Emprestimo realizado com sucesso: "+ emprestimo);
         });

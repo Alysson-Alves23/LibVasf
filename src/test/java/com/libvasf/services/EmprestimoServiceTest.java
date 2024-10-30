@@ -3,6 +3,7 @@ package com.libvasf.services;
 import com.libvasf.models.Emprestimo;
 import com.libvasf.models.Cliente;
 import com.libvasf.models.Livro;
+import com.libvasf.models.Usuario;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,12 +22,18 @@ import java.util.logging.Logger;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-class EmprestimoServiceTest {
+@Transactional
+public class EmprestimoServiceTest {
 
     private static final Logger logger = Logger.getLogger(EmprestimoServiceTest.class.getName());
 
     @InjectMocks
     private EmprestimoService service;
+    @InjectMocks
+    private ClienteService clienteService;
+    @InjectMocks
+    private LivroService livroService;
+    @InjectMocks UsuarioService usuarioService;
 
     private final List<Long> emprestimosCriados = new java.util.ArrayList<>();
 
@@ -172,18 +180,38 @@ class EmprestimoServiceTest {
     // Método para criar um mock de empréstimo
     private Emprestimo emprestimoMock() {
         Emprestimo emprestimo = new Emprestimo();
+
+        // Crie e salve o cliente
         Cliente cliente = new Cliente();
         cliente.setNome("Cliente Teste");
+        cliente.setTelefone("219392133");
+        cliente.setCpf("999999999");
+        cliente.setEmail("teste@email.com");
+        cliente.setSenha("123456");
+        clienteService.salvarCliente(cliente); // Salva o cliente para que tenha um ID
+        Usuario usuario = new Usuario();
+        usuario.setNome("John Doe");
+        usuario.setEmail("user@email.com");
+        usuario.setSenha("password");
+        usuario.setIsAdmin(0);
+        usuarioService.salvarUsuario(usuario);
+        // Crie e salve o livro
         Livro livro = new Livro();
         livro.setTitulo("Livro de Teste");
         livro.setNumeroCopias(1); // Simula que há 1 cópia disponível
+        livro.setIsbn(123);
+        livro.setCategoria("teste");
+        livro.setDisponivel(true);
+        livroService.salvarLivro(livro); // Salva o livro para que tenha um ID
 
+        // Associe o cliente e o livro ao empréstimo
         emprestimo.setCliente(cliente);
         emprestimo.setLivro(livro);
         emprestimo.setDataEmprestimo(LocalDate.now());
         emprestimo.setDataHoraInicio(LocalDate.now().atStartOfDay());
         emprestimo.setDataHoraFim(LocalDate.now().plusDays(7).atStartOfDay());
-
+        emprestimo.setUsuario(usuario);
         return emprestimo;
     }
+
 }
