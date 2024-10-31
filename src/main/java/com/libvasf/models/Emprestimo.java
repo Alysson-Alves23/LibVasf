@@ -85,16 +85,11 @@ public class Emprestimo {
     }
 
     public boolean isClosed() {
-
-        return false;
+        return !this.isActive;
     }
 
     public void setIsActive(boolean isActive) {
         this.isActive = isActive;
     }
 
-
-    public boolean getIsActive() {
-        return this.isActive;
-    }
 }

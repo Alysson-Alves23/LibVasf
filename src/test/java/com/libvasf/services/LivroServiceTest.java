@@ -105,6 +105,8 @@ class LivroServiceTest {
         livro.setIsbn(1234567890);
         livro.setCategoria("Ficção");
         livro.setNumeroCopias(5);
+        livro.setDisponivel(true);
+        service.salvarLivro(livro);
         return livro;
     }
 }

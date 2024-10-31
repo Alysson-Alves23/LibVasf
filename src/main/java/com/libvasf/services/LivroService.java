@@ -11,8 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LivroService {
-    public void removerLivro(Long livroId) {
-    }
 
     private static final Logger logger = Logger.getLogger(LivroService.class.getName());
 
@@ -51,8 +49,80 @@ public class LivroService {
         });
     }
 
-    public List<Livro> buscarPorTitulo(String livroDeTeste) {
+    /**
+     * Lista todos os livros do banco de dados.
+     *
+     * @return Uma lista de objetos Livro.
+     */
+    public List<Livro> listarLivros() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            List<Livro> livros = session.createQuery("from Livro", Livro.class).list();
+            logger.info("Listagem de livros realizada com sucesso. Total: " + livros.size());
+            return livros;
+        } catch (HibernateException he) {
+            logger.log(Level.SEVERE, "Erro ao listar livros: " + he.getMessage(), he);
+            throw he;
+        }
+    }
 
-        return List.of();
+    /**
+     * Busca um livro pelo seu ID.
+     *
+     * @param id O ID do livro.
+     * @return O objeto Livro correspondente, ou null se não encontrado.
+     */
+    public Livro buscarLivroPorId(Long id) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Livro livro = session.get(Livro.class, id);
+            if (livro != null) {
+                logger.info("Livro encontrado pelo ID " + id + ": " + livro);
+            } else {
+                logger.warning("Nenhum livro encontrado com o ID " + id);
+            }
+            return livro;
+        } catch (HibernateException he) {
+            logger.log(Level.SEVERE, "Erro ao buscar livro por ID " + id + ": " + he.getMessage(), he);
+            throw he;
+        }
+    }
+
+    /**
+     * Busca um livro pelo seu título.
+     *
+     * @param titulo O título do livro.
+     * @return O objeto Livro correspondente, ou null se não encontrado.
+     */
+    public List<Livro> buscarPorTitulo(String titulo) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            List<Livro> livros = session.createQuery("from Livro where titulo = :titulo", Livro.class)
+                    .setParameter("titulo", titulo)
+                    .list();
+            if (!livros.isEmpty()) {
+                logger.info("Livros encontrados pelo título '" + titulo + "': " + livros);
+            } else {
+                logger.warning("Nenhum livro encontrado com o título '" + titulo + "'");
+            }
+            return livros;
+        } catch (HibernateException he) {
+            logger.log(Level.SEVERE, "Erro ao buscar livro por título '" + titulo + "': " + he.getMessage(), he);
+            throw he;
+        }
+    }
+
+    /**
+     * Remove um livro pelo seu ID.
+     *
+     * @param id O ID do livro a ser removido.
+     */
+    public void removerLivro(Long id) {
+        executeInsideTransaction(session -> {
+            Livro livro = session.get(Livro.class, id);
+            if (livro != null) {
+                session.delete(livro);
+                logger.info("Livro removido com sucesso: " + livro);
+            } else {
+                logger.warning("Nenhum livro encontrado para remover com o ID " + id);
+            }
+        });
     }
 }

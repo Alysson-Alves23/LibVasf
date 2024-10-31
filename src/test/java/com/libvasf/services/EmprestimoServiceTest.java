@@ -4,10 +4,7 @@ import com.libvasf.models.Emprestimo;
 import com.libvasf.models.Cliente;
 import com.libvasf.models.Livro;
 import com.libvasf.models.Usuario;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -33,12 +30,17 @@ public class EmprestimoServiceTest {
     private ClienteService clienteService;
     @InjectMocks
     private LivroService livroService;
-    @InjectMocks UsuarioService usuarioService;
+    @InjectMocks
+    UsuarioService usuarioService;
 
     private final List<Long> emprestimosCriados = new java.util.ArrayList<>();
+    private final List<Long> clientesCriados = new java.util.ArrayList<>();
+    private final List<Long> usuariosCriados = new java.util.ArrayList<>();
+    private final List<Long> livrosCriados = new java.util.ArrayList<>();
 
     @AfterEach
     void cleanUp() {
+        // Remover empréstimos
         for (Long emprestimoId : emprestimosCriados) {
             try {
                 service.removerEmprestimo(emprestimoId);
@@ -48,6 +50,39 @@ public class EmprestimoServiceTest {
             }
         }
         emprestimosCriados.clear();
+
+        // Remover clientes
+        for (Long clienteId : clientesCriados) {
+            try {
+                clienteService.removerCliente(clienteId);
+                logger.info("Cliente removido durante o cleanup: ID = " + clienteId);
+            } catch (Exception e) {
+                logger.log(Level.SEVERE, "Erro ao remover cliente durante o cleanup: ID = " + clienteId, e);
+            }
+        }
+        clientesCriados.clear();
+
+        // Remover usuários
+        for (Long usuarioId : usuariosCriados) {
+            try {
+                usuarioService.removerUsuario(usuarioId);
+                logger.info("Usuário removido durante o cleanup: ID = " + usuarioId);
+            } catch (Exception e) {
+                logger.log(Level.SEVERE, "Erro ao remover usuário durante o cleanup: ID = " + usuarioId, e);
+            }
+        }
+        usuariosCriados.clear();
+
+        // Remover livros
+        for (Long livroId : livrosCriados) {
+            try {
+                livroService.removerLivro(livroId);
+                logger.info("Livro removido durante o cleanup: ID = " + livroId);
+            } catch (Exception e) {
+                logger.log(Level.SEVERE, "Erro ao remover livro durante o cleanup: ID = " + livroId, e);
+            }
+        }
+        livrosCriados.clear();
     }
 
     @Nested
@@ -180,38 +215,50 @@ public class EmprestimoServiceTest {
     // Método para criar um mock de empréstimo
     private Emprestimo emprestimoMock() {
         Emprestimo emprestimo = new Emprestimo();
+        emprestimo.setCliente(clienteMock());
+        emprestimo.setLivro(livroMock());
+        emprestimo.setUsuario(usuarioMock());
+        emprestimo.setDataEmprestimo(LocalDate.now());
+        emprestimo.setDataHoraInicio(LocalDate.now().atStartOfDay());
+        emprestimo.setDataHoraFim(LocalDate.now().plusDays(7).atStartOfDay());
 
-        // Crie e salve o cliente
+        emprestimosCriados.add(emprestimo.getId());
+        return emprestimo;
+    }
+
+    private Cliente clienteMock() {
         Cliente cliente = new Cliente();
         cliente.setNome("Cliente Teste");
         cliente.setTelefone("219392133");
         cliente.setCpf("999999999");
-        cliente.setEmail("teste@email.com");
+        cliente.setEmail("teste" + System.currentTimeMillis() + "@email.com");
         cliente.setSenha("123456");
-        clienteService.salvarCliente(cliente); // Salva o cliente para que tenha um ID
+        clienteService.salvarCliente(cliente);
+        clientesCriados.add(cliente.getId());
+        return cliente;
+    }
+
+    private Usuario usuarioMock() {
         Usuario usuario = new Usuario();
         usuario.setNome("John Doe");
-        usuario.setEmail("user@email.com");
+        usuario.setEmail("abcd" + System.currentTimeMillis() + "@email.com");
         usuario.setSenha("password");
         usuario.setIsAdmin(0);
         usuarioService.salvarUsuario(usuario);
-        // Crie e salve o livro
+        usuariosCriados.add(usuario.getId());
+        return usuario;
+    }
+
+    private Livro livroMock() {
         Livro livro = new Livro();
         livro.setTitulo("Livro de Teste");
-        livro.setNumeroCopias(1); // Simula que há 1 cópia disponível
+        livro.setNumeroCopias(1);
         livro.setIsbn(123);
         livro.setCategoria("teste");
         livro.setDisponivel(true);
-        livroService.salvarLivro(livro); // Salva o livro para que tenha um ID
-
-        // Associe o cliente e o livro ao empréstimo
-        emprestimo.setCliente(cliente);
-        emprestimo.setLivro(livro);
-        emprestimo.setDataEmprestimo(LocalDate.now());
-        emprestimo.setDataHoraInicio(LocalDate.now().atStartOfDay());
-        emprestimo.setDataHoraFim(LocalDate.now().plusDays(7).atStartOfDay());
-        emprestimo.setUsuario(usuario);
-        return emprestimo;
+        livroService.salvarLivro(livro);
+        livrosCriados.add(livro.getId());
+        return livro;
     }
 
 }
