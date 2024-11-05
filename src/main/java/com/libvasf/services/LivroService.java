@@ -43,6 +43,9 @@ public class LivroService {
      * @param livro O objeto Livro a ser salvo.
      */
     public void salvarLivro(Livro livro) {
+        if (livro.getIsbn() == null) {
+            throw new IllegalArgumentException("ISBN não pode ser nulo");
+        }
         executeInsideTransaction(session -> {
             session.save(livro);
             logger.info("Livro salvo com sucesso: " + livro);
