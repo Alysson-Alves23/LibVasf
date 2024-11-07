@@ -51,7 +51,6 @@ public class LivroService {
             logger.info("Livro salvo com sucesso: " + livro);
         });
     }
-
     /**
      * Lista todos os livros do banco de dados.
      *
