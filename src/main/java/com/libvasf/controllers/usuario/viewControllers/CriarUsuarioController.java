@@ -26,9 +26,9 @@ public class CriarUsuarioController extends ViewController{
     }
     private void handleCadastrar(MouseEvent event) {
 
-        String nome = emailField.getText();
-        String senha = nameField.getText();
-        String email = passwordField.getText();
+        String nome = nameField.getText();
+        String senha = passwordField.getText();
+        String email = emailField.getText();
         int admin = isAdmin.isSelected()?1:0;
 
           if(UsuarioController.cadastrarUsuario(nome, senha, email, admin)){
