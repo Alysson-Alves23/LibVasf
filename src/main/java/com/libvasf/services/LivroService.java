@@ -111,6 +111,13 @@ public class LivroService {
         }
     }
 
+    public void editarLivro(Livro livro) {
+        executeInsideTransaction(session -> {
+            session.update(livro);
+            logger.info("Livro editado com sucesso: " + livro);
+        });
+    }
+
     /**
      * Remove um livro pelo seu ID.
      *
