@@ -207,7 +207,6 @@ class PublicacaoServiceTest {
         Livro livro = new Livro();
         livro.setTitulo("Livro de Teste");
         livro.setIsbn(123456789);
-        livro.setCategoria("Ficção");
         livro.setDisponivel(true);
         livroService.salvarLivro(livro);
         livrosCriados.add(livro.getId());

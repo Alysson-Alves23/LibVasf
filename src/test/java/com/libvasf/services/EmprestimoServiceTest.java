@@ -254,7 +254,6 @@ public class EmprestimoServiceTest {
         livro.setTitulo("Livro de Teste");
         livro.setNumeroCopias(1);
         livro.setIsbn(123);
-        livro.setCategoria("teste");
         livro.setDisponivel(true);
         livroService.salvarLivro(livro);
         livrosCriados.add(livro.getId());

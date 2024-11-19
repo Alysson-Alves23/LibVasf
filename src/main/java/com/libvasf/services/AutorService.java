@@ -93,6 +93,12 @@ public class AutorService {
             }
         });
     }
+    public void editarAutor(Autor autor) {
+        executeInsideTransaction(session -> {
+            session.update(autor);
+            logger.info("Autor editado com sucesso: " + autor);
+        });
+    }
     @FunctionalInterface
     private interface SessionAction {
         void execute(Session session) throws HibernateException;
