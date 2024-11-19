@@ -3,7 +3,6 @@ package com.libvasf.services;
 import com.libvasf.models.Categoria;
 import com.libvasf.models.Livro;
 import com.libvasf.models.LivroCategoria;
-import com.libvasf.models.Publicacao;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -19,7 +18,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @ExtendWith(MockitoExtension.class)
-
 class LivroCategoriaServiceTest {
 
     private static final Logger logger = Logger.getLogger(LivroCategoriaServiceTest.class.getName());
@@ -115,6 +113,29 @@ class LivroCategoriaServiceTest {
         }
     }
 
+    @Nested
+    @DisplayName("Testes de Edição de LivroCategoria")
+    class EditLivroCategoriaTests {
+
+        @Test
+        @DisplayName("Deve editar uma relação LivroCategoria com sucesso")
+        void shouldEditLivroCategoriaWithSuccess() {
+            LivroCategoria livroCategoria = livroCategoriaMock();
+            service.salvarLivroCategoria(livroCategoria);
+            livroCategoriasCriadas.add(livroCategoria.getId());
+
+            Categoria novaCategoria = new Categoria();
+            novaCategoria.setNome("Nova Categoria");
+            categoriaService.salvarCategoria(novaCategoria);
+            categoriasCriadas.add(novaCategoria.getId());
+
+            livroCategoria.setCategoria(novaCategoria);
+            service.editarLivroCategoria(livroCategoria);
+
+            LivroCategoria atualizado = service.buscarLivroCategoriaPorId(livroCategoria.getId());
+            assertEquals("Nova Categoria", atualizado.getCategoria().getNome(), "A categoria deveria ter sido atualizada.");
+        }
+    }
 
     @Nested
     @DisplayName("Testes de Remoção de LivroCategoria")

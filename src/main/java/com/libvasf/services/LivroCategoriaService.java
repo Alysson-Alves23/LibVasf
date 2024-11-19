@@ -85,6 +85,20 @@ public class LivroCategoriaService {
             }
         });
     }
+    public void editarLivroCategoria(LivroCategoria livroCategoria) {
+        if (livroCategoria.getLivro() == null) {
+            throw new IllegalArgumentException("Livro não pode ser nulo");
+        }
+
+        if (livroCategoria.getCategoria() == null) {
+            throw new IllegalArgumentException("Categoria não pode ser nulo");
+        }
+
+        executeInsideTransaction(session -> {
+            session.update(livroCategoria);
+            logger.info("LivroCategoria editada com sucesso: " + livroCategoria);
+        });
+    }
 
     @FunctionalInterface
     private interface SessionAction {
