@@ -22,6 +22,47 @@ public class EmprestimoController {
     private static final LivroService livroService = new LivroService();
     private static final ClienteService clienteService = new ClienteService();
 
+    /**
+     * Busca um livro pelo título.
+     *
+     * @param titulo o título do livro a ser buscado
+     * @return o livro encontrado ou null em caso de erro
+     */
+    public Livro buscarLivroPorTitulo(String titulo) {
+        try {
+            return livroService.buscarLivroPorTitulo(titulo);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Erro ao buscar livro por título: " + titulo, e);
+            return null;
+        }
+    }
+
+    public List<Emprestimo> buscarEmprestimosPorNomeCliente(String nomeCliente) {
+        try {
+            return emprestimoService.buscarEmprestimosPorNomeCliente(nomeCliente);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Erro ao buscar empréstimos pelo nome do cliente: " + nomeCliente, e);
+            return null;
+        }
+    }
+
+    /**
+     * Busca um cliente pelo nome.
+     *
+     * @param nome o nome do cliente a ser buscado
+     * @return o cliente encontrado ou null em caso de erro
+     */
+    public Cliente buscarClientePorNome(String nome) {
+        try {
+            return clienteService.buscarClientePorNome(nome);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Erro ao buscar cliente por nome: " + nome, e);
+            return null;
+        }
+    }
+
+
+
     public void realizarEmprestimo(Long usuarioId, Long livroId, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, Long clienteId) {
         try {
             Usuario usuario = usuarioService.buscarUsuarioPorId(usuarioId);
@@ -54,6 +95,8 @@ public class EmprestimoController {
             logger.log(Level.SEVERE, "Erro ao realizar a devolução para o empréstimo ID: " + id, e);
         }
     }
+
+
 
     public Emprestimo buscarEmprestimoPorId(Long id) {
         try {

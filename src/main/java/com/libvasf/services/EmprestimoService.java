@@ -18,6 +18,19 @@ public class EmprestimoService {
 
     private static final Logger logger = Logger.getLogger(EmprestimoService.class.getName());
 
+    public List<Emprestimo> buscarEmprestimosPorNomeCliente(String nomeCliente) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery(
+                            "FROM Emprestimo e WHERE e.cliente.nome = :nomeCliente", Emprestimo.class)
+                    .setParameter("nomeCliente", nomeCliente)
+                    .list();
+        } catch (HibernateException e) {
+            logger.log(Level.SEVERE, "Erro ao buscar empréstimos pelo nome do cliente: " + nomeCliente, e);
+            return null;
+        }
+    }
+
+
     @FunctionalInterface
     private interface SessionAction {
         void execute(Session session) throws HibernateException;

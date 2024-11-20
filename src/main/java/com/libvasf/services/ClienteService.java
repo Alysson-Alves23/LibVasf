@@ -15,6 +15,19 @@ public class ClienteService {
 
     private static final Logger logger = Logger.getLogger(ClienteService.class.getName());
 
+
+    public Cliente buscarClientePorNome(String nome) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Realiza a consulta utilizando HQL para buscar o cliente pelo nome
+            return session.createQuery("FROM Cliente WHERE nome = :nome", Cliente.class)
+                    .setParameter("nome", nome)
+                    .uniqueResult();
+        } catch (HibernateException e) {
+            logger.log(Level.SEVERE, "Erro ao buscar cliente por nome: " + nome, e);
+            return null;
+        }
+    }
+
     @FunctionalInterface
     public interface SessionAction {
         void execute(Session session) throws HibernateException;
