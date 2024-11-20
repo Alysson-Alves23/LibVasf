@@ -24,7 +24,7 @@
                         <VBox spacing="20.0">
                             <Text style="-fx-font-size: 16; -fx-font-weight: bold;" text="Pesquisar cliente" />
                             <HBox spacing="10.0">
-                                <TextField fx:id="pesquisarClienteField" promptText="CPF" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10;" />
+                                <TextField fx:id="pesquisarClienteField" promptText="Nome" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10;" />
                                 <Button style="-fx-background-color: #e8dfd2; -fx-background-radius: 5; -fx-padding: 10;" text="🔍" />
                             </HBox>
                         </VBox>

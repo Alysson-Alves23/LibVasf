@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #f4f0eb;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox maxWidth="400.0" spacing="10.0" style="-fx-background-color: #ffffff; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 20;">
+                    <!-- Campos para edição -->
+                    <TextField fx:id="nomeField" promptText="Nome" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" />
+                    <TextField fx:id="emailField" promptText="E-mail" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" />
+                    <TextField fx:id="cpfField" promptText="CPF" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" />
+                    <TextField fx:id="senhaField" promptText="Senha" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" />
+                    <!-- ComboBox para Cargo -->
+                    <ComboBox fx:id="cargoComboBox" promptText="Cargo" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" />
+                    <!-- Botão Salvar -->
+                    <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                        <Button fx:id="salvarButton" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" text="Salvar" />
+                    </HBox>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
