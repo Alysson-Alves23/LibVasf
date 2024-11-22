@@ -14,6 +14,11 @@ public class LivroService {
 
     private static final Logger logger = Logger.getLogger(LivroService.class.getName());
 
+    public Livro buscarLivroPorTitulo(String titulo) {
+        String titulo1 = titulo;
+        return titulo1;
+    }
+
     @FunctionalInterface
     private interface SessionAction {
         void execute(Session session) throws HibernateException;
