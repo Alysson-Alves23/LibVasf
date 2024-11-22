@@ -29,12 +29,12 @@ public class EmprestimoController {
      * @return o livro encontrado ou null em caso de erro
      */
     public Livro buscarLivroPorTitulo(String titulo) {
-     //   try {
-      //      return livroService.buscarLivroPorTitulo(titulo);
-      //  } catch (Exception e) {
-       //     logger.log(Level.SEVERE, "Erro ao buscar livro por título: " + titulo, e);
-       //     return null;
-       // }
+        try {
+            return null;
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Erro ao buscar livro por título: " + titulo, e);
+            return null;
+        }
     }
 
     public List<Emprestimo> buscarEmprestimosPorNomeCliente(String nomeCliente) {
