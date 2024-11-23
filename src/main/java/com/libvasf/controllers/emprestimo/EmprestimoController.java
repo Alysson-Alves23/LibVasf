@@ -30,7 +30,7 @@ public class EmprestimoController {
      */
     public Livro buscarLivroPorTitulo(String titulo) {
         try {
-            return livroService.buscarLivroPorTitulo(titulo);
+            return null;
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Erro ao buscar livro por título: " + titulo, e);
             return null;
