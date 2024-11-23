@@ -51,9 +51,9 @@ public class ListarUsuariosController extends ViewController {
             editarButton.setDisable(newSelection == null);
 
             editarButton.setOnMouseClicked(this::editarUsuario);
-            sair.setOnMouseClicked(this::sair);
-        });
 
+        });
+        sair.setOnMouseClicked(this::sair);
 
         pesquisarField.textProperty().addListener((obs, oldText, newText) -> {
             filtrarUsuarios(newText);
