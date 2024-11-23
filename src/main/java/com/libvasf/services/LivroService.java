@@ -15,8 +15,20 @@ public class LivroService {
     private static final Logger logger = Logger.getLogger(LivroService.class.getName());
 
     public Livro buscarLivroPorTitulo(String titulo) {
-        String titulo1 = titulo;
-        return titulo1;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Livro livro = session.createQuery("from Livro where titulo = :titulo", Livro.class)
+                    .setParameter("titulo", titulo)
+                    .uniqueResult();
+            if (livro != null) {
+                logger.info("Livro encontrado pelo título '" + titulo + "': " + livro);
+            } else {
+                logger.warning("Nenhum livro encontrado com o título '" + titulo + "'");
+            }
+            return livro;
+        } catch (HibernateException he) {
+            logger.log(Level.SEVERE, "Erro ao buscar livro por título '" + titulo + "': " + he.getMessage(), he);
+            throw he;
+        }
     }
 
     @FunctionalInterface

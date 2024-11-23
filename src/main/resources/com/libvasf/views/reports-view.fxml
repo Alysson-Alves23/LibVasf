@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="1024.0" prefWidth="1440.0" fx:controller="com.libvasf.controllers.relatorios.RelatoriosController" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox alignment="CENTER" spacing="40.0" style="-fx-background-color: #f4f0eb;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox alignment="TOP_LEFT" maxWidth="800.0" prefHeight="800.0" prefWidth="900.0" spacing="20.0" style="-fx-background-color: #ffffff; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 40;">
+                    <children>
+                        <VBox spacing="20.0">
+                            <Text style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Geração de Relatórios" />
+                        </VBox>
+
+                        <VBox spacing="20.0">
+                            <Text style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Selecione o tipo de relatório" />
+                            <ComboBox fx:id="tipoRelatorioComboBox" promptText="Escolha um critério" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5; -fx-padding: 10;" />
+                        </VBox>
+
+                        <VBox spacing="20.0">
+                            <Text style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Período do Relatório" />
+                            <HBox spacing="10.0">
+                                <TextField fx:id="dataInicioField" promptText="Data Início (DD/MM/AAAA)" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5; -fx-padding: 10;" />
+                                <TextField fx:id="dataFimField" promptText="Data Fim (DD/MM/AAAA)" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5; -fx-padding: 10;" />
+                            </HBox>
+                        </VBox>
+
+                        <VBox spacing="20.0">
+                            <Text style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Visualização do Relatório" />
+                            <TableView fx:id="relatorioTableView" prefHeight="400.0" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-background-color: #e8dfd2;" />
+                        </VBox>
+
+                        <HBox alignment="CENTER_RIGHT" spacing="20.0">
+                            <Button fx:id="exportarPdfButton" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14px;" text="Exportar para PDF" />
+                            <Button fx:id="exportarCsvButton" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14px;" text="Exportar para CSV" />
+                            <Button fx:id="gerarButton" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14px;" text="Gerar Relatório" />
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
