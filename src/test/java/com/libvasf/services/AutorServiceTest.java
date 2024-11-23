@@ -75,6 +75,24 @@ class AutorServiceTest {
             logger.warning("Exceção esperada ao criar autor sem nome: " + actualMessage);
         }
     }
+    @Nested
+    @DisplayName("Testes de Edição de Autor")
+    class EditAutorTests {
+
+        @Test
+        @DisplayName("Deve editar um autor com sucesso")
+        void shouldEditAutorWithSuccess() {
+            Autor autor = autorMock();
+            service.salvarAutor(autor);
+            autoresCriados.add(autor.getId());
+
+            autor.setNome("Nome Editado");
+            service.editarAutor(autor);
+
+            Autor atualizado = service.buscarAutorPorId(autor.getId());
+            assertEquals("Nome Editado", atualizado.getNome(), "O nome deveria ter sido atualizado.");
+        }
+    }
 
     // Método para criar um mock de autor
     private Autor autorMock() {

@@ -31,7 +31,8 @@ public class Emprestimo {
     @Column(name = "emprestimo_datetime_fim")
     private LocalDateTime dataHoraFim;
     @Column(name = "IsActive", nullable = false)
-    private int isActive;
+    private boolean isActive;
+
     public Long getId() {
         return id;
     }
@@ -84,7 +85,11 @@ public class Emprestimo {
     }
 
     public boolean isClosed() {
-
-        return false;
+        return !this.isActive;
     }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+
 }

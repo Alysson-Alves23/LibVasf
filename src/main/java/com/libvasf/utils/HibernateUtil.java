@@ -1,16 +1,12 @@
 package com.libvasf.utils;
 
-import com.libvasf.models.Autor;
-import com.libvasf.models.Cliente;
-import com.libvasf.models.Emprestimo;
-import com.libvasf.models.Livro;
-import com.libvasf.models.Publicacao;
-import com.libvasf.models.Usuario;
+import com.libvasf.models.*;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.boot.spi.ClassLoaderAccess;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
@@ -51,6 +47,8 @@ public class HibernateUtil {
             configuration.addAnnotatedClass(Autor.class);
             configuration.addAnnotatedClass(Emprestimo.class);
             configuration.addAnnotatedClass(Publicacao.class);
+            configuration.addAnnotatedClass(Categoria.class);
+            configuration.addAnnotatedClass(LivroCategoria.class);
 
             sessionFactory = configuration.buildSessionFactory();
             System.out.println("SessionFactory criada com sucesso.");

@@ -9,12 +9,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Transactional
 @ExtendWith(MockitoExtension.class)
 class ClienteServiceTest {
 
@@ -165,6 +167,8 @@ class ClienteServiceTest {
         cliente.setCpf("12345678900");
         cliente.setEmail("cliente@teste.com");
         cliente.setTelefone("999999999");
+        cliente.setSenha("senhaTest123");
+
         return cliente;
     }
 }

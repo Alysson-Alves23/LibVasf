@@ -77,5 +77,10 @@ public class Cliente {
     }
 
     public void setTelefone(String number) {
+        this.telefone = number;
+    }
+
+    public String getTelefone() {
+        return this.telefone;
     }
 }

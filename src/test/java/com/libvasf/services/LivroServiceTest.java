@@ -98,13 +98,32 @@ class LivroServiceTest {
             assertTrue(resultados.isEmpty(), "A pesquisa não deveria retornar resultados.");
         }
     }
+    @Nested
+    @DisplayName("Testes de Edição de Livro")
+    class EditLivroTests {
+
+        @Test
+        @DisplayName("Deve editar um livro com sucesso")
+        void shouldEditLivroWithSuccess() {
+            Livro livro = livroMock();
+            service.salvarLivro(livro);
+            livrosCriados.add(livro.getId());
+
+            livro.setTitulo("Novo Título");
+            service.editarLivro(livro);
+
+            Livro atualizado = service.buscarLivroPorId(livro.getId());
+            assertEquals("Novo Título", atualizado.getTitulo(), "O título deveria ter sido atualizado.");
+        }
+    }
 
     private Livro livroMock() {
         Livro livro = new Livro();
         livro.setTitulo("Livro de Teste");
         livro.setIsbn(1234567890);
-        livro.setCategoria("Ficção");
         livro.setNumeroCopias(5);
+        livro.setDisponivel(true);
+        service.salvarLivro(livro);
         return livro;
     }
 }

@@ -53,6 +53,33 @@ public class UsuarioService {
             throw he;
         }
     }
+    public List<Usuario> buscarUsuarioPorEmailPartial(String email) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            List<Usuario> usuarios = session.createQuery("from Usuario where email like :email", Usuario.class)
+                    .setParameter("email", email + "%")
+                    .getResultList();
+
+            if (!usuarios.isEmpty()) {
+                logger.info("Usuários encontrados com e-mails começando por '" + email + "': " + usuarios);
+            } else {
+                logger.warning("Nenhum usuário encontrado com e-mails começando por '" + email + "'");
+            }
+
+            return usuarios;
+        } catch (HibernateException he) {
+            logger.log(Level.SEVERE, "Erro ao buscar usuários por e-mails começando por '" + email + "': " + he.getMessage(), he);
+            throw he;
+        }
+    }
+
+    public boolean atualizarUsuario(Usuario usuario) {
+
+        executeInsideTransaction(session -> {
+            session.update(usuario);
+            logger.info("Usuário atualizado com sucesso: " + usuario);
+        });
+        return false;
+    }
 
     @FunctionalInterface
     private interface SessionAction {

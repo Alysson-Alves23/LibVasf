@@ -13,8 +13,8 @@ import java.util.logging.Logger;
 
 public class ViewController{
     private static final Logger logger = Logger.getLogger(LoginController.class.getName());
-    private static Scene backScene;
-    private static String backTitle;
+    protected static Scene backScene;
+    protected String backTitle;
     protected void goTo(String title, String viewname) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/libvasf/views/"+viewname+".fxml"));
@@ -32,6 +32,7 @@ public class ViewController{
             showAlert("Erro", "Não foi possível abrir a Dashboard.", Alert.AlertType.ERROR);
         }
     }
+
     // Método auxiliar para exibir mensagens de alerta
     protected void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);

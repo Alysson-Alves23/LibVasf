@@ -15,9 +15,6 @@ public class Livro {
     @Column(name = "livro_id")
     private Long id;
 
-    @Column(name = "livro_categoria", length = 45, nullable = false)
-    private String categoria;
-
     @Column(name = "livro_titulo", length = 45, nullable = false)
     private String titulo;
 
@@ -41,14 +38,6 @@ public class Livro {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
     }
 
     public String getTitulo() {
@@ -91,7 +80,11 @@ public class Livro {
         this.publicacoes = publicacoes;
     }
 
+    public int getNumeroCopias() {
+        return this.copias;
+    }
 
     public void setNumeroCopias(int i) {
+        this.copias = i;
     }
 }

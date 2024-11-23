@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
+@Transactional
 class PublicacaoServiceTest {
 
     private static final Logger logger = Logger.getLogger(PublicacaoServiceTest.class.getName());
@@ -25,10 +27,19 @@ class PublicacaoServiceTest {
     @InjectMocks
     private PublicacaoService service;
 
+    @InjectMocks
+    private AutorService autorService;
+
+    @InjectMocks
+    private LivroService livroService;
+
     private final List<Long> publicacoesCriadas = new java.util.ArrayList<>();
+    private final List<Long> livrosCriados = new java.util.ArrayList<>();
+    private final List<Long> autoresCriados = new java.util.ArrayList<>();
 
     @AfterEach
     void cleanUp() {
+        // Remover publicações
         for (Long publicacaoId : publicacoesCriadas) {
             try {
                 service.removerPublicacao(publicacaoId);
@@ -38,6 +49,28 @@ class PublicacaoServiceTest {
             }
         }
         publicacoesCriadas.clear();
+
+        //Remover autores
+        for (Long autorId : autoresCriados) {
+            try {
+                autorService.removerAutor(autorId);
+                logger.info("Autor removido durante o cleanup: ID = " + autorId);
+            } catch (Exception e) {
+                logger.log(Level.SEVERE, "Erro ao remover autor durante o cleanup: ID = " + autorId, e);
+            }
+        }
+        autoresCriados.clear();
+
+        //Remover livros
+        for (Long livroId : livrosCriados) {
+            try {
+                livroService.removerLivro(livroId);
+                logger.info("Livro removido durante o cleanup: ID = " + livroId);
+            } catch (Exception e) {
+                logger.log(Level.SEVERE, "Erro ao remover livro durante o cleanup: ID = " + livroId, e);
+            }
+        }
+        livrosCriados.clear();
     }
 
     @Nested
@@ -166,6 +199,7 @@ class PublicacaoServiceTest {
         publicacao.setLivro(livroMock());
         publicacao.setAutor(autorMock());
         publicacao.setAno(2023);
+        service.salvarPublicacao(publicacao);
         return publicacao;
     }
 
@@ -173,14 +207,17 @@ class PublicacaoServiceTest {
         Livro livro = new Livro();
         livro.setTitulo("Livro de Teste");
         livro.setIsbn(123456789);
-        livro.setCategoria("Ficção");
         livro.setDisponivel(true);
+        livroService.salvarLivro(livro);
+        livrosCriados.add(livro.getId());
         return livro;
     }
 
     private Autor autorMock() {
         Autor autor = new Autor();
         autor.setNome("Autor de Teste");
+        autorService.salvarAutor(autor);
+        autoresCriados.add(autor.getId());
         return autor;
     }
 }

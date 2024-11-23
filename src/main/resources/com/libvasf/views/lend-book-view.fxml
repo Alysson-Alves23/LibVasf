@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="1024.0" prefWidth="1440.0" fx:controller="com.libvasf.controllers.emprestimo.EmprestimoViewController" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox alignment="CENTER" spacing="40.0" style="-fx-background-color: #f4f0eb;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox alignment="TOP_LEFT" maxWidth="600.0" prefHeight="622.0" prefWidth="726.0" spacing="20.0" style="-fx-background-color: #ffffff; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 40;">
+                    <children>
+                        <VBox spacing="20.0">
+                            <Text style="-fx-font-size: 16; -fx-font-weight: bold;" text="Pesquisar livros" />
+                            <HBox spacing="10.0">
+                                <TextField fx:id="pesquisarLivroField" promptText="Título, Autor, Categoria" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10;" />
+                                <Button style="-fx-background-color: #e8dfd2; -fx-background-radius: 5; -fx-padding: 10;" text="🔍" />
+                            </HBox>
+                        </VBox>
+                        <VBox spacing="20.0">
+                            <Text style="-fx-font-size: 16; -fx-font-weight: bold;" text="Pesquisar cliente" />
+                            <HBox spacing="10.0">
+                                <TextField fx:id="pesquisarClienteField" promptText="Nome" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10;" />
+                                <Button style="-fx-background-color: #e8dfd2; -fx-background-radius: 5; -fx-padding: 10;" text="🔍" />
+                            </HBox>
+                        </VBox>
+                        <VBox spacing="20.0">
+                            <Text style="-fx-font-size: 16; -fx-font-weight: bold;" text="Período de empréstimo" />
+                            <ComboBox fx:id="periodoComboBox" promptText="X dias" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5; -fx-padding: 10;" />
+                        </VBox>
+                        <VBox spacing="20.0">
+                            <Text style="-fx-font-size: 16; -fx-font-weight: bold;" text="Data de entrega" />
+                            <TextField fx:id="dataEntregaField" promptText="DD/MM/AAAA" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5; -fx-text-fill: red; -fx-padding: 10;" />
+                        </VBox>
+                        <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                            <Button fx:id="salvarButton" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5; -fx-padding: 10; -fx-font-size: 14;" text="Salvar" />
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

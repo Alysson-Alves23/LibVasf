@@ -42,6 +42,11 @@ public class MainController extends ViewController {
     }
     @FXML
     private void handleGerenciarUsuarios(MouseEvent event) {
+        if(MainApplication.getCurrentUser().getIsAdmin() != 0) {
+            goTo("Gerenciar Usuário","list-user-view");
+        }else{
+            showAlert("Erro","Você não tem premissão para acessar essa função!", Alert.AlertType.ERROR);
+        }
 
     }
     @FXML
