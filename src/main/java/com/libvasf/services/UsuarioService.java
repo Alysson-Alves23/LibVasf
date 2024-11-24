@@ -167,11 +167,17 @@ public class UsuarioService {
         executeInsideTransaction(session -> {
             Usuario usuario = session.get(Usuario.class, id);
             if (usuario != null) {
-                session.delete(usuario);
-                logger.info("Usuário removido com sucesso: " + usuario);
+                try {
+                    session.delete(usuario); // Hibernate tratará da exclusão em cascata
+                    logger.info("Usuário e todas as referências removidos com sucesso: " + usuario);
+                } catch (Exception e) {
+                    logger.log(Level.SEVERE, "Erro ao remover o usuário com o ID " + id, e);
+                    throw new RuntimeException("Erro ao remover usuário e referências.", e);
+                }
             } else {
                 logger.warning("Nenhum usuário encontrado para remover com o ID " + id);
             }
         });
     }
+
 }

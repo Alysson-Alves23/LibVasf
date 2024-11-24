@@ -50,7 +50,7 @@
                   <Font size="20.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="gerenciarLivros" maxHeight="52.0" maxWidth="261.0" prefHeight="38.0" prefWidth="261.0" styleClass="NavLink" text="Gerenciar Livros">
+            <Hyperlink fx:id="gerenciarLivros" maxHeight="52.0" maxWidth="261.0" prefHeight="38.0" prefWidth="261.0" styleClass="NavLink" text="Gerenciar Categorias">
                <font>
                   <Font size="20.0" />
                </font>

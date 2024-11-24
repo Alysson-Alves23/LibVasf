@@ -51,7 +51,7 @@ public class MainController extends ViewController {
     }
     @FXML
     private void handleGerenciarLivros(MouseEvent event) {
-        goTo("Libvasf","book-management-view");
+        goTo("Libvasf","gerenciar-categoria-view");
     }
     @FXML
     private void handleCadastrarLivros(MouseEvent event) {

@@ -219,7 +219,6 @@ public class EmprestimoServiceTest {
         emprestimo.setCliente(clienteMock());
         emprestimo.setLivro(livroMock());
         emprestimo.setUsuario(usuarioMock());
-        emprestimo.setDataEmprestimo(LocalDate.now());
         emprestimo.setDataHoraInicio(LocalDate.now().atStartOfDay());
         emprestimo.setDataHoraFim(LocalDate.now().plusDays(7).atStartOfDay());
 

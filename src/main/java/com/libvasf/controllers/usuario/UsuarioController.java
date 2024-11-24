@@ -60,7 +60,13 @@ public class UsuarioController {
         }
         return false;
     }
-
+    public static void excluirUsuario(long id) {
+        try{
+            usuarioService.removerUsuario(id);
+        }catch (Exception e){
+            throw  e;
+        }
+    }
     /**
      * Método para realizar o logout do usuário atual.
      */
