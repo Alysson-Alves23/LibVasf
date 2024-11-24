@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" styleClass="Background" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.usuario.viewControllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" styleClass="Background" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.usuario.viewControllers.LoginController">
    <children>
       <VBox alignment="CENTER" prefHeight="1024.0" prefWidth="1440.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0">
          <children>
@@ -23,12 +23,9 @@
                      <children>
                         <!-- User Field -->
                         <StackPane alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="280.0">
-                           <!-- Campo de Usuário -->
-                           <TextField fx:id="usernameField" prefHeight="54.0" prefWidth="280.0" promptText="E-mail" styleClass="TextField">
-                              <font>
-                                 <Font size="18.0" />
-                              </font></TextField>
-                           <!-- Ícone do Usuário -->
+
+                           <TextField fx:id="usernameField" prefHeight="54.0" prefWidth="280.0" styleClass="TextField" />
+
                            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
                               <image>
                                  <Image url="@../../../assets/user.png" />
@@ -38,12 +35,9 @@
 
                         <!-- Password Field -->
                         <StackPane alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="280.0">
-                           <!-- Campo de Senha -->
-                           <PasswordField fx:id="passwordField" prefHeight="54.0" prefWidth="280.0" promptText="Senha" styleClass="TextField">
-                              <font>
-                                 <Font size="18.0" />
-                              </font></PasswordField>
-                           <!-- Ícone da Senha -->
+
+                           <PasswordField fx:id="passwordField" prefHeight="54.0" prefWidth="280.0" styleClass="TextField" />
+
                            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
                               <image>
                                  <Image url="@../../../assets/password.png" />

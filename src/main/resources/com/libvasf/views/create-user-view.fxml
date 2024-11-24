@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -10,42 +9,56 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1024.0" maxWidth="1440.0" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.usuario.viewControllers.CriarUsuarioController">
+<AnchorPane maxHeight="1024.0" maxWidth="1440.0" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.usuario.viewControllers.CriarUsuarioController">
    <children>
       <HBox alignment="CENTER" maxHeight="1024.0" maxWidth="1440.0" prefHeight="1024.0" prefWidth="1440.0" styleClass="Background">
          <children>
             <VBox alignment="CENTER" maxHeight="782.0" maxWidth="1152.0" prefHeight="782.0" prefWidth="1152.0" spacing="70.0" style="-fx-background-color: ffffff;">
                <children>
-                  <TextField fx:id="nameField" maxHeight="64.0" maxWidth="760.0" prefHeight="64.0" prefWidth="760.0" promptText="Nome" styleClass="TextField">
-                     <VBox.margin>
-                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets top="20.0" />
-                     </padding>
-                  </TextField>
-                  <TextField fx:id="emailField" maxHeight="64.0" maxWidth="760.0" prefHeight="64.0" prefWidth="760.0" promptText="E-mail" styleClass="TextField">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets top="20.0" />
-                     </padding>
-                  </TextField>
-                  <PasswordField fx:id="passwordField" maxHeight="64.0" maxWidth="760.0" prefHeight="64.0" prefWidth="760.0" promptText="Senha" styleClass="TextField">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets top="20.0" />
-                     </padding>
-                  </PasswordField>
+
+                  <StackPane alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="760.0">
+                     <TextField fx:id="nameField" maxHeight="64.0" maxWidth="760.0" prefHeight="64.0" prefWidth="760.0" styleClass="TextField" text="Nome">
+                        <font>
+                           <Font size="20.0" />
+                        </font>
+                     </TextField>
+                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                        <image>
+                           <Image url="@../../../assets/user.png" />
+                        </image>
+                     </ImageView>
+                  </StackPane>
+
+                  <StackPane alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="760.0">
+                     <TextField fx:id="emailField" maxHeight="64.0" maxWidth="760.0" prefHeight="64.0" prefWidth="760.0" styleClass="TextField" text="email">
+                        <font>
+                           <Font size="20.0" />
+                        </font>
+                     </TextField>
+                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                        <image>
+                           <Image url="@../../../assets/email.png" />
+                        </image>
+                     </ImageView>
+                  </StackPane>
+
+                  <StackPane alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="760.0">
+                     <PasswordField fx:id="passwordField" maxHeight="64.0" maxWidth="760.0" prefHeight="64.0" prefWidth="760.0" styleClass="TextField" text="senha">
+                        <font>
+                           <Font size="20.0" />
+                        </font>
+                     </PasswordField>
+                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                        <image>
+                           <Image url="@../../../assets/password.png" />
+                        </image>
+                     </ImageView>
+                  </StackPane>
+
                   <HBox alignment="CENTER" prefHeight="55.0" prefWidth="760.0" spacing="375.0">
                      <children>
                         <CheckBox fx:id="isAdmin" mnemonicParsing="false" text="Admin" />
@@ -59,6 +72,7 @@
             </VBox>
          </children>
       </HBox>
+
       <HBox id="sair" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
          <children>
             <ImageView fx:id="sairImg" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -70,11 +84,9 @@
                <font>
                   <Font size="20.0" />
                </font>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
             </Hyperlink>
          </children>
       </HBox>
    </children>
 </AnchorPane>
+
