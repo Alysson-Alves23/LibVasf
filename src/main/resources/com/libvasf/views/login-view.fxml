@@ -9,6 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -18,15 +19,36 @@
          <children>
             <HBox alignment="CENTER" prefHeight="1024.0" prefWidth="1440.0">
                <children>
-                  <VBox id="loginFormPanel" alignment="CENTER" maxHeight="724.0" maxWidth="531.0" prefHeight="724.0" prefWidth="531.0" spacing="54.0" style="-fx-background-color: FFFFFF; -fx-padding: 100;" styleClass="FormVBox">
+                  <VBox id="loginFormPanel" alignment="CENTER" maxHeight="724.0" maxWidth="531.0" prefHeight="724.0" prefWidth="531.0" spacing="20.0" style="-fx-background-color: FFFFFF; -fx-padding: 50;" styleClass="FormVBox">
                      <children>
-                        <TextField fx:id="usernameField" prefHeight="54.0" prefWidth="310.0" styleClass="TextField">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </TextField>
-                        <PasswordField fx:id="passwordField" prefHeight="54.0" prefWidth="310.0" styleClass="TextField" />
+                        <!-- User Field -->
+                        <StackPane alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="280.0">
+                           <!-- Campo de Usuário -->
+                           <TextField fx:id="usernameField" prefHeight="54.0" prefWidth="280.0" styleClass="TextField" />
+                           <!-- Ícone do Usuário -->
+                           <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                              <image>
+                                 <Image url="@../../../assets/user.png" />
+                              </image>
+                           </ImageView>
+                        </StackPane>
+
+                        <!-- Password Field -->
+                        <StackPane alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="280.0">
+                           <!-- Campo de Senha -->
+                           <PasswordField fx:id="passwordField" prefHeight="54.0" prefWidth="280.0" styleClass="TextField" />
+                           <!-- Ícone da Senha -->
+                           <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                              <image>
+                                 <Image url="@../../../assets/password.png" />
+                              </image>
+                           </ImageView>
+                        </StackPane>
+
+                        <!-- Login Button -->
                         <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="41.0" prefWidth="154.0" text="Login" />
+
+                        <!-- Forgot Password Hyperlink -->
                         <Hyperlink fx:id="forgotPassword" alignment="CENTER" prefHeight="52.0" prefWidth="240.0" text="Esqueceu a senha?" textAlignment="CENTER">
                            <VBox.margin>
                               <Insets />
