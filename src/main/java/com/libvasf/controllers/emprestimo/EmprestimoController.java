@@ -125,4 +125,18 @@ public class EmprestimoController {
             logger.log(Level.SEVERE, "Erro ao remover o empréstimo: ID = " + id, e);
         }
     }
+
+    public void encerrarEmprestimo(Long id) throws Exception {
+
+        try{
+            Emprestimo emprestimo = emprestimoService.buscarEmprestimoPorId(id);
+            emprestimo.setIsActive(false);
+            emprestimo.setDataHoraDevolucao(LocalDateTime.now());
+
+            emprestimoService.atualizarUsuario(emprestimo);
+
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
+    }
 }
