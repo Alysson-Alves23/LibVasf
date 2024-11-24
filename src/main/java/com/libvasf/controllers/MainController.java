@@ -37,15 +37,16 @@ public class MainController extends ViewController {
     }
     @FXML
     private void handleCadastrarCliente(MouseEvent event) {
+        goTo("Libvasf","client-register");
     }
     @FXML
     private void handleDevolucao(MouseEvent event) {
-        goTo("Libvasf","lend-book-view");
+        goTo("Libvasf","return-book-view");
 
     }
     @FXML
     private void handleEmprestimo(MouseEvent event) {
-        goTo("Libvasf","return-book-view");
+        goTo("Libvasf","lend-book-view");
 
     }
     @FXML

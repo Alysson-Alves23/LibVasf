@@ -63,7 +63,7 @@ public class EmprestimoController {
 
 
 
-    public void realizarEmprestimo(Long usuarioId, Long livroId, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, Long clienteId) {
+    public void realizarEmprestimo(Long usuarioId, Long livroId, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, Long clienteId) throws Exception {
         try {
             Usuario usuario = usuarioService.buscarUsuarioPorId(usuarioId);
             Livro livro = livroService.buscarLivroPorId(livroId);
@@ -84,6 +84,7 @@ public class EmprestimoController {
             logger.info("Empréstimo realizado com sucesso: " + emprestimo);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Erro ao realizar empréstimo", e);
+            throw new Exception(e.getMessage());
         }
     }
 

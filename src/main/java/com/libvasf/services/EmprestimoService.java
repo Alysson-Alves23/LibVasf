@@ -54,7 +54,7 @@ public class EmprestimoService {
         if (emprestimo.getCliente() == null) throw new IllegalArgumentException("Cliente não pode ser nulo");
 
         Livro livro = emprestimo.getLivro();
-        if(livro.getNumeroCopias() <= 0) throw new IllegalArgumentException("Não há cópias disponíveis");
+        if(!livro.getDisponivel()) throw new IllegalArgumentException("Não há cópias disponíveis");
 
         livro.setNumeroCopias(livro.getNumeroCopias() - 1);
         emprestimo.setDataHoraInicio(LocalDateTime.now());

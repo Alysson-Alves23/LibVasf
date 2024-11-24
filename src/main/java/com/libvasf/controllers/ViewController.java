@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ViewController{
-    private static final Logger logger = Logger.getLogger(LoginController.class.getName());
+    protected static final Logger logger = Logger.getLogger(LoginController.class.getName());
     protected static Scene backScene;
     protected String backTitle;
     protected void goTo(String title, String viewname) {

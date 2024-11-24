@@ -22,7 +22,8 @@ public class Cliente {
     private String email;
     @Column(name = "cliente_telefone", length = 45, nullable = false)
     private String telefone;
-    @Column(name = "cliente_senha", length = 45, nullable = false)
+
+    @Column(name = "cliente_senha", length = 45, nullable = true)
     private String senha;
 
     @OneToMany(mappedBy = "cliente")

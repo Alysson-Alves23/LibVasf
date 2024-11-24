@@ -1,5 +1,6 @@
 package com.libvasf.controllers.relatorios;
 
+import com.libvasf.controllers.ViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,7 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-public class RelatoriosViewController {
+public class RelatoriosViewController extends ViewController {
 
     @FXML
     private ComboBox<String> criteriosComboBox;
