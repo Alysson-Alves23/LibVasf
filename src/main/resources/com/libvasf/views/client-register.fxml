@@ -3,8 +3,11 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -15,48 +18,72 @@
             <children>
                 <VBox alignment="TOP_CENTER" maxHeight="838.0" maxWidth="1152.0" prefHeight="838.0" prefWidth="1152.0" spacing="20.0" style="-fx-background-color: #ffffff; -fx-border-radius: 10; -fx-background-radius: 10;">
                     <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar Cliente">
-                     <font>
-                        <Font name="Arial" size="41.0" />
-                     </font>
-                  </Text>
-                        <!-- Campo de pesquisa -->
-                        <HBox alignment="CENTER_LEFT" maxWidth="760.0" prefHeight="64.0" spacing="10.0" />
-                  <VBox prefHeight="474.0" prefWidth="760.0">
-                     <children>
-                                <TextField fx:id="nome" maxHeight="50.0" maxWidth="700.0" minHeight="70.0" minWidth="760.0" prefHeight="150.0" prefWidth="760.0" promptText="Nome" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField">
-                                    <font>
-                                        <Font name="Arial" size="25.0" />
-                                    </font>
-                                </TextField>
-                        <HBox prefHeight="150.0" prefWidth="200.0" />
-                        <TextField fx:id="email" maxHeight="50.0" maxWidth="700.0" minHeight="70.0" minWidth="760.0" prefHeight="70.0" prefWidth="700.0" promptText="Email" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField">
-                           <font>
-                              <Font name="Arial" size="25.0" />
-                           </font>
-                        </TextField>
-                        <HBox minWidth="200.0" prefHeight="150.0" prefWidth="200.0" />
-                        <TextField fx:id="telefone" maxHeight="50.0" maxWidth="700.0" minHeight="70.0" minWidth="760.0" prefHeight="50.0" prefWidth="700.0" promptText="Telefone" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField">
-                           <font>
-                              <Font name="Arial" size="25.0" />
-                           </font>
-                        </TextField>
-                        <HBox prefHeight="150.0" prefWidth="200.0" />
-                        <TextField fx:id="cpf" maxHeight="50.0" maxWidth="700.0" minHeight="70.0" minWidth="760.0" prefHeight="50.0" prefWidth="700.0" promptText="CPF" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField">
-                           <font>
-                              <Font name="Arial" size="25.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                  </VBox><HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="350.0">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar Cliente">
+                            <font>
+                                <Font name="Arial" size="41.0" />
+                            </font>
+                        </Text>
+                        <VBox prefHeight="474.0" prefWidth="760.0" spacing="20.0">
+                            <children>
+                                <StackPane alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="760.0">
+                                    <TextField fx:id="nome" prefHeight="70.0" prefWidth="760.0" promptText="Nome" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField">
+                                        <font>
+                                            <Font name="Arial" size="25.0" />
+                                        </font>
+                                    </TextField>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                                        <image>
+                                            <Image url="@../../../assets/user.png" />
+                                        </image>
+                                    </ImageView>
+                                </StackPane>
+                                <StackPane alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="760.0">
+                                    <TextField fx:id="email" prefHeight="70.0" prefWidth="760.0" promptText="Email" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField">
+                                        <font>
+                                            <Font name="Arial" size="25.0" />
+                                        </font>
+                                    </TextField>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                                        <image>
+                                            <Image url="@../../../assets/email.png" />
+                                        </image>
+                                    </ImageView>
+                                </StackPane>
+
+                                <StackPane alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="760.0">
+                                    <TextField fx:id="telefone" prefHeight="70.0" prefWidth="760.0" promptText="Telefone" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField">
+                                        <font>
+                                            <Font name="Arial" size="25.0" />
+                                        </font>
+                                    </TextField>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                                        <image>
+                                            <Image url="@../../../assets/telefone.png" />
+                                        </image>
+                                    </ImageView>
+                                </StackPane>
+
+                                <StackPane alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="760.0">
+                                    <TextField fx:id="cpf" prefHeight="70.0" prefWidth="760.0" promptText="CPF" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField">
+                                        <font>
+                                            <Font name="Arial" size="25.0" />
+                                        </font>
+                                    </TextField>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                                        <image>
+                                            <Image url="@../../../assets/cpf.png" />
+                                        </image>
+                                    </ImageView>
+                                </StackPane>
+                            </children>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="350.0">
                             <children>
                                 <Button fx:id="voltar" maxHeight="50.0" maxWidth="50.0" minHeight="32.0" minWidth="200.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 5;" text="Voltar">
                                     <font>
                                         <Font name="Arial" size="22.0" />
                                     </font>
                                 </Button>
-
-
                                 <Button fx:id="salvarButton" maxHeight="50.0" maxWidth="200.0" minHeight="32.0" minWidth="200.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="90.0" style="-fx-background-radius: 5;" text="Cadastrar">
                                     <font>
                                         <Font name="Arial" size="28.0" />

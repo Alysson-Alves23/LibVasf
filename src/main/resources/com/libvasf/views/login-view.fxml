@@ -23,9 +23,9 @@
                      <children>
                         <!-- User Field -->
                         <StackPane alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="280.0">
-                           <!-- Campo de Usuário -->
+
                            <TextField fx:id="usernameField" prefHeight="54.0" prefWidth="280.0" styleClass="TextField" />
-                           <!-- Ícone do Usuário -->
+
                            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
                               <image>
                                  <Image url="@../../../assets/user.png" />
@@ -35,9 +35,9 @@
 
                         <!-- Password Field -->
                         <StackPane alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="280.0">
-                           <!-- Campo de Senha -->
+
                            <PasswordField fx:id="passwordField" prefHeight="54.0" prefWidth="280.0" styleClass="TextField" />
-                           <!-- Ícone da Senha -->
+
                            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
                               <image>
                                  <Image url="@../../../assets/password.png" />
