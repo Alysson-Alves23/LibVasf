@@ -8,12 +8,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
+import java.util.Optional;
+
 public class EditarUsuarioController extends ViewController {
 
     public Button sair;
     public CheckBox cargo;
+    public Button Excluir;
     private Usuario usuario;
-    private UsuarioService usuarioService = new UsuarioService();
+    private final UsuarioService usuarioService = new UsuarioService();
     @FXML
     private TextField nomeField;
     @FXML
@@ -26,11 +29,37 @@ public class EditarUsuarioController extends ViewController {
 
     @FXML
     private void initialize() {
-
+        Excluir.setOnMouseClicked(this::excluir);
         salvarButton.setOnMouseClicked(this::salvarAlteracoes);
         sair.setOnMouseClicked(this::sair);
 
     }
+    private void excluir(MouseEvent event) {
+        if (usuario == null) {
+            showAlert("Erro", "Nenhum usuário carregado para exclusão.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        // Exibir o popup de confirmação
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirmar Exclusão");
+        confirmAlert.setHeaderText(null);
+        confirmAlert.setContentText("Tem certeza de que deseja excluir o usuário " + usuario.getNome() + "?");
+
+        // Capturar a resposta do usuário
+        Optional<ButtonType> result = confirmAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                // Excluir o usuário usando o serviço
+                usuarioService.removerUsuario(usuario.getId());
+                showAlert("Sucesso", "Usuário excluído com sucesso.", Alert.AlertType.INFORMATION);
+                back(); // Retorna à tela anterior após exclusão
+            } catch (Exception e) {
+                showAlert("Erro", "Falha ao excluir o usuário. Tente novamente.", Alert.AlertType.ERROR);
+            }
+        }
+    }
+
     // Método chamado para definir o usuário a ser editado
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
