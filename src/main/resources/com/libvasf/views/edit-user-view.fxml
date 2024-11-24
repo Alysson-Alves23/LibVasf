@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.PasswordField?>
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.usuario.viewControllers.EditarUsuarioController">
     <children>
         <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #f4f0eb;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -15,7 +16,7 @@
                     <!-- Campos para edição -->
                     <TextField fx:id="nomeField" promptText="Nome" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" />
                     <TextField fx:id="emailField" promptText="E-mail" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" />
-                    <TextField fx:id="senhaField" promptText="Senha" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" />
+                    <PasswordField fx:id="senhaField" promptText="Senha" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" />
                <CheckBox  fx:id="cargo" mnemonicParsing="false" text="Admin" />
                     <!-- Botão Salvar -->
                     <HBox alignment="CENTER" spacing="264.0">

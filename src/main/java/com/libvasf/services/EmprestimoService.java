@@ -2,7 +2,6 @@ package com.libvasf.services;
 
 import com.libvasf.models.Emprestimo;
 import com.libvasf.models.Livro;
-import com.libvasf.models.Cliente;
 import com.libvasf.utils.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -26,6 +25,17 @@ public class EmprestimoService {
                     .list();
         } catch (HibernateException e) {
             logger.log(Level.SEVERE, "Erro ao buscar empréstimos pelo nome do cliente: " + nomeCliente, e);
+            return null;
+        }
+    }
+    public List<Emprestimo> buscarEmprestimosPorCpf(String cpf) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery(
+                            "FROM Emprestimo e WHERE e.cliente.cpf = :cpf", Emprestimo.class)
+                    .setParameter("cpf", cpf)
+                    .list();
+        } catch (HibernateException e) {
+            logger.log(Level.SEVERE, "Erro ao buscar empréstimos pelo cpf do cliente: " + cpf, e);
             return null;
         }
     }
@@ -54,7 +64,7 @@ public class EmprestimoService {
         if (emprestimo.getCliente() == null) throw new IllegalArgumentException("Cliente não pode ser nulo");
 
         Livro livro = emprestimo.getLivro();
-        if(livro.getNumeroCopias() <= 0) throw new IllegalArgumentException("Não há cópias disponíveis");
+        if(!livro.getDisponivel()) throw new IllegalArgumentException("Não há cópias disponíveis");
 
         livro.setNumeroCopias(livro.getNumeroCopias() - 1);
         emprestimo.setDataHoraInicio(LocalDateTime.now());
@@ -81,6 +91,18 @@ public class EmprestimoService {
         }
     }
 
+
+    public void atualizarUsuario(Emprestimo emprestimo) {
+        try {
+            executeInsideTransaction(session -> {
+                session.update(emprestimo);
+                logger.info("Emprestimo Atualizado com Sucesso: " + emprestimo.getId());
+            });
+        }catch (HibernateException he) {
+            throw he;
+        }
+
+    }
     public void removerEmprestimo(Long id) {
         executeInsideTransaction(session -> {
             Emprestimo emprestimo = session.get(Emprestimo.class, id);
@@ -100,7 +122,7 @@ public class EmprestimoService {
             }
             Livro livro = emprestimo.getLivro();
             livro.setNumeroCopias((livro.getNumeroCopias() + 1));
-            emprestimo.setDataEmprestimo(LocalDate.now());
+            emprestimo.setDataHoraInicio(LocalDate.now().atStartOfDay());
             emprestimo.setIsActive(false);
 
             session.update(emprestimo);

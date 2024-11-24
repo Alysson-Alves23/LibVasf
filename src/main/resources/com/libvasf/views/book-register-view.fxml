@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="1024.0" maxWidth="1440.0" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.livro.RegistrarLivro">
+    <children>
+        <HBox alignment="CENTER" maxHeight="1024.0" maxWidth="1440.0" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: EAE4DD;" styleClass="Background">
+            <children>
+                <VBox alignment="TOP_CENTER" maxHeight="880.0" maxWidth="1152.0" prefHeight="880.0" prefWidth="1152.0" spacing="20.0" style="-fx-background-color: #ffffff; -fx-border-radius: 10; -fx-background-radius: 10;">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar Livro">
+                            <font>
+                                <Font name="Arial" size="41.0" />
+                            </font>
+                        </Text>
+                        <!-- Campo de pesquisa -->
+                        <HBox alignment="CENTER_LEFT" maxWidth="760.0" prefHeight="64.0" spacing="10.0" />
+                        <VBox prefHeight="474.0" prefWidth="760.0">
+                            <children>
+                                <TextField fx:id="titulo" maxHeight="50.0" maxWidth="700.0" minHeight="70.0" minWidth="760.0" prefHeight="150.0" prefWidth="760.0" promptText="Titulo" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField">
+                                    <font>
+                                        <Font name="Arial" size="25.0" />
+                                    </font>
+                                </TextField>
+                                <HBox prefHeight="150.0" prefWidth="200.0" />
+                        <TextField fx:id="autor" maxHeight="50.0" maxWidth="700.0" minHeight="70.0" minWidth="760.0" prefHeight="150.0" prefWidth="760.0" promptText="Autor" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField">
+                           <font>
+                              <Font name="Arial" size="25.0" />
+                           </font>
+                        </TextField>
+                                <HBox minWidth="200.0" prefHeight="150.0" prefWidth="200.0" />
+                                <TextField fx:id="isbn" maxHeight="50.0" maxWidth="700.0" minHeight="70.0" minWidth="760.0" prefHeight="50.0" prefWidth="700.0" promptText="ISBN" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField">
+                                    <font>
+                                        <Font name="Arial" size="25.0" />
+                                    </font>
+                                </TextField>
+                                <HBox prefHeight="150.0" prefWidth="200.0" />
+                                <TextField fx:id="editora" maxHeight="50.0" maxWidth="700.0" minHeight="70.0" minWidth="760.0" prefHeight="50.0" prefWidth="700.0" promptText="Editora" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField">
+                                    <font>
+                                        <Font name="Arial" size="25.0" />
+                                    </font>
+                                </TextField>
+                            </children>
+                        </VBox>
+                        <HBox prefHeight="90.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="ano" prefHeight="50.0" prefWidth="180.0" promptText="Ano">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                        </TextField>
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                        <ChoiceBox fx:id="categoria" prefHeight="50.0" prefWidth="250.0" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" />
+                        <TextField fx:id="copias" prefHeight="50.0" prefWidth="180.0" promptText="N° de cópias">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                        </TextField>
+                     </children></HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="350.0">
+                     <children>
+                              <Button fx:id="voltar" maxHeight="50.0" maxWidth="50.0" minHeight="32.0" minWidth="200.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 5;" text="Voltar">
+                                  <font>
+                                      <Font name="Arial" size="22.0" />
+                                  </font>
+                              </Button>
+      
+      
+                              <Button fx:id="salvarButton" maxHeight="50.0" maxWidth="200.0" minHeight="32.0" minWidth="200.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="90.0" style="-fx-background-radius: 5;" text="Cadastrar">
+                                  <font>
+                                      <Font name="Arial" size="28.0" />
+                                  </font>
+                              </Button>
+                     </children>
+                  </HBox>
+                    </children>
+                    <padding>
+                        <Insets left="196.0" right="196.0" top="25.0" />
+                    </padding>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

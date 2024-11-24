@@ -63,7 +63,7 @@ public class EmprestimoController {
 
 
 
-    public void realizarEmprestimo(Long usuarioId, Long livroId, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, Long clienteId) {
+    public void realizarEmprestimo(Long usuarioId, Long livroId, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, Long clienteId) throws Exception {
         try {
             Usuario usuario = usuarioService.buscarUsuarioPorId(usuarioId);
             Livro livro = livroService.buscarLivroPorId(livroId);
@@ -84,6 +84,7 @@ public class EmprestimoController {
             logger.info("Empréstimo realizado com sucesso: " + emprestimo);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Erro ao realizar empréstimo", e);
+            throw new Exception(e.getMessage());
         }
     }
 
@@ -122,6 +123,20 @@ public class EmprestimoController {
             logger.info("Empréstimo removido com sucesso: ID = " + id);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Erro ao remover o empréstimo: ID = " + id, e);
+        }
+    }
+
+    public void encerrarEmprestimo(Long id) throws Exception {
+
+        try{
+            Emprestimo emprestimo = emprestimoService.buscarEmprestimoPorId(id);
+            emprestimo.setIsActive(false);
+            emprestimo.setDataHoraDevolucao(LocalDateTime.now());
+
+            emprestimoService.atualizarUsuario(emprestimo);
+
+        } catch (Exception e) {
+            throw new Exception(e);
         }
     }
 }

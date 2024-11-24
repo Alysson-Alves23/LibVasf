@@ -125,7 +125,8 @@ public class EmprestimoServiceTest {
         @DisplayName("Deve falhar ao realizar empréstimo quando não há cópias disponíveis")
         void shouldFailCreateEmprestimoWithoutAvailableCopies() {
             Emprestimo emprestimo = emprestimoMock();
-            emprestimo.getLivro().setNumeroCopias(0); // Simula que não há cópias disponíveis
+            emprestimo.getLivro().setDisponivel(false);
+            // Simula que não há cópias disponíveis
 
             Exception exception = assertThrows(Exception.class, () -> {
                 service.realizarEmprestimo(emprestimo);

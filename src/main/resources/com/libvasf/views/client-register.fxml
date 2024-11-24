@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="1024.0" maxWidth="1440.0" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.usuario.viewControllers.PesquisarUsuarioController">
+<AnchorPane maxHeight="1024.0" maxWidth="1440.0" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.cliente.RegistrarCliente">
     <children>
         <HBox alignment="CENTER" maxHeight="1024.0" maxWidth="1440.0" prefHeight="1024.0" prefWidth="1440.0" style="-fx-background-color: EAE4DD;" styleClass="Background">
             <children>
@@ -24,44 +24,46 @@
                         <HBox alignment="CENTER_LEFT" maxWidth="760.0" prefHeight="64.0" spacing="10.0" />
                   <VBox prefHeight="474.0" prefWidth="760.0">
                      <children>
-                                <TextField fx:id="pesquisarField" maxHeight="50.0" maxWidth="700.0" minHeight="70.0" minWidth="760.0" prefHeight="150.0" prefWidth="760.0" promptText="Nome" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField" text="Nome">
+                                <TextField fx:id="nome" maxHeight="50.0" maxWidth="700.0" minHeight="70.0" minWidth="760.0" prefHeight="150.0" prefWidth="760.0" promptText="Nome" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField">
                                     <font>
                                         <Font name="Arial" size="25.0" />
                                     </font>
                                 </TextField>
                         <HBox prefHeight="150.0" prefWidth="200.0" />
-                        <TextField fx:id="pesquisarField1" maxHeight="50.0" maxWidth="700.0" minHeight="70.0" minWidth="760.0" prefHeight="70.0" prefWidth="700.0" promptText="Nome" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField" text="Email">
+                        <TextField fx:id="email" maxHeight="50.0" maxWidth="700.0" minHeight="70.0" minWidth="760.0" prefHeight="70.0" prefWidth="700.0" promptText="Email" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField">
                            <font>
                               <Font name="Arial" size="25.0" />
                            </font>
                         </TextField>
                         <HBox minWidth="200.0" prefHeight="150.0" prefWidth="200.0" />
-                        <TextField fx:id="pesquisarField12" maxHeight="50.0" maxWidth="700.0" minHeight="70.0" minWidth="760.0" prefHeight="50.0" prefWidth="700.0" promptText="Nome" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField" text="CPF">
+                        <TextField fx:id="telefone" maxHeight="50.0" maxWidth="700.0" minHeight="70.0" minWidth="760.0" prefHeight="50.0" prefWidth="700.0" promptText="Telefone" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField">
                            <font>
                               <Font name="Arial" size="25.0" />
                            </font>
                         </TextField>
                         <HBox prefHeight="150.0" prefWidth="200.0" />
-                        <TextField fx:id="pesquisarField11" maxHeight="50.0" maxWidth="700.0" minHeight="70.0" minWidth="760.0" prefHeight="50.0" prefWidth="700.0" promptText="Nome" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField" text="Senha">
+                        <TextField fx:id="cpf" maxHeight="50.0" maxWidth="700.0" minHeight="70.0" minWidth="760.0" prefHeight="50.0" prefWidth="700.0" promptText="CPF" style="-fx-border-radius: 5; -fx-background-radius: 5;" styleClass="TextField">
                            <font>
                               <Font name="Arial" size="25.0" />
                            </font>
                         </TextField>
                      </children>
-                  </VBox>
-                  <HBox prefHeight="90.0" prefWidth="200.0" />
+                  </VBox><HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="350.0">
+                            <children>
+                                <Button fx:id="voltar" maxHeight="50.0" maxWidth="50.0" minHeight="32.0" minWidth="200.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 5;" text="Voltar">
+                                    <font>
+                                        <Font name="Arial" size="22.0" />
+                                    </font>
+                                </Button>
 
 
-                         <Button fx:id="editarButton" maxHeight="50.0" maxWidth="200.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="118.0" style="-fx-background-radius: 5;" text="Cadastrar">
-                     <font>
-                        <Font name="Arial" size="28.0" />
-                     </font>
-                  </Button>
-                          <Button fx:id="buscarButton" maxHeight="50.0" maxWidth="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 5;" text="&lt;">
-                     <font>
-                        <Font name="Arial Bold" size="32.0" />
-                     </font>
-                  </Button>
+                                <Button fx:id="salvarButton" maxHeight="50.0" maxWidth="200.0" minHeight="32.0" minWidth="200.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="90.0" style="-fx-background-radius: 5;" text="Cadastrar">
+                                    <font>
+                                        <Font name="Arial" size="28.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </HBox>
                     </children>
                     <padding>
                         <Insets left="196.0" right="196.0" />
