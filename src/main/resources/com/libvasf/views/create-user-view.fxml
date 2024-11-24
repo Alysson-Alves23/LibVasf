@@ -13,13 +13,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1024.0" maxWidth="1440.0" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.usuario.viewControllers.CriarUsuarioController">
+<AnchorPane maxHeight="1024.0" maxWidth="1440.0" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.usuario.viewControllers.CriarUsuarioController">
    <children>
       <HBox alignment="CENTER" maxHeight="1024.0" maxWidth="1440.0" prefHeight="1024.0" prefWidth="1440.0" styleClass="Background">
          <children>
             <VBox alignment="CENTER" maxHeight="782.0" maxWidth="1152.0" prefHeight="782.0" prefWidth="1152.0" spacing="70.0" style="-fx-background-color: ffffff;">
                <children>
-                  <TextField fx:id="nameField" maxHeight="64.0" maxWidth="760.0" prefHeight="64.0" prefWidth="760.0" styleClass="TextField" text="Nome">
+                  <TextField fx:id="nameField" maxHeight="64.0" maxWidth="760.0" prefHeight="64.0" prefWidth="760.0" promptText="Nome" styleClass="TextField">
                      <VBox.margin>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                      </VBox.margin>
@@ -30,7 +30,7 @@
                         <Insets top="20.0" />
                      </padding>
                   </TextField>
-                  <TextField fx:id="emailField" maxHeight="64.0" maxWidth="760.0" prefHeight="64.0" prefWidth="760.0" styleClass="TextField" text="email">
+                  <TextField fx:id="emailField" maxHeight="64.0" maxWidth="760.0" prefHeight="64.0" prefWidth="760.0" promptText="E-mail" styleClass="TextField">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -38,7 +38,7 @@
                         <Insets top="20.0" />
                      </padding>
                   </TextField>
-                  <PasswordField fx:id="passwordField" maxHeight="64.0" maxWidth="760.0" prefHeight="64.0" prefWidth="760.0" styleClass="TextField" text="senha">
+                  <PasswordField fx:id="passwordField" maxHeight="64.0" maxWidth="760.0" prefHeight="64.0" prefWidth="760.0" promptText="Senha" styleClass="TextField">
                      <font>
                         <Font size="20.0" />
                      </font>
