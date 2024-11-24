@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.MainController">
+<AnchorPane prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.livro.GerenciarLivro">
    <HBox layoutX="83.0" layoutY="106.0" prefHeight="1024.0" prefWidth="1440.0" styleClass="Background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <VBox alignment="TOP_CENTER" prefHeight="1024.0" prefWidth="451.0" spacing="71.0" style="-fx-background-color: WHITE;">
          <ImageView fitHeight="177.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true">
@@ -27,40 +27,12 @@
                   <Font size="20.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="cadastrarUsuario" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Cadastrar Usuario">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Hyperlink>
-            <Hyperlink fx:id="cadastrarCliente" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Cadastrar Cliente">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Hyperlink>
-            <Hyperlink fx:id="devolucao" layoutX="10.0" layoutY="193.0" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Devolução">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Hyperlink>
-            <Hyperlink fx:id="emprestimo" layoutX="10.0" layoutY="132.0" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Emprestimo">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Hyperlink>
             <Hyperlink fx:id="gerenciarLivros" maxHeight="52.0" maxWidth="261.0" prefHeight="38.0" prefWidth="261.0" styleClass="NavLink" text="Gerenciar Livros">
                <font>
                   <Font size="20.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="gerenciarUsuario" maxHeight="82.0" maxWidth="240.0" prefWidth="240.0" styleClass="NavLink" text="Gerenciar Usuarios" textOverrun="CLIP" wrapText="true">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Hyperlink>
-            <Hyperlink maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Relatório">
+            <Hyperlink fx:id="gerenciarAutor" maxHeight="82.0" maxWidth="240.0" prefWidth="240.0" styleClass="NavLink" text="Gerenciar Autores" textOverrun="CLIP" wrapText="true">
                <font>
                   <Font size="20.0" />
                </font>

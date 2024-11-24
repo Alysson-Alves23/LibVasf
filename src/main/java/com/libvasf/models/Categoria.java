@@ -15,9 +15,6 @@ public class Categoria {
     @Column(name = "categoria_nome", length = 45, nullable = false)
     private String nome;
 
-    @OneToMany(mappedBy = "categoria")
-    private List<LivroCategoria> livroCategorias;
-
     // Getters e Setters
     public Long getId() {
         return id;
@@ -35,11 +32,4 @@ public class Categoria {
         this.nome = nome;
     }
 
-    public List<LivroCategoria> getLivroCategorias() {
-        return livroCategorias;
-    }
-
-    public void setLivroCategorias(List<LivroCategoria> livroCategorias) {
-        this.livroCategorias = livroCategorias;
-    }
 }

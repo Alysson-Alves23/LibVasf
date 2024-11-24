@@ -1,7 +1,7 @@
 package com.libvasf.controllers.livro;
 
-import com.libvasf.models.Livro;
-import com.libvasf.services.LivroService;
+import com.libvasf.models.*;
+import com.libvasf.services.*;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -11,32 +11,61 @@ public class LivroController {
 
     private static final Logger logger = Logger.getLogger(LivroController.class.getName());
     private static final LivroService livroService = new LivroService();
+    private static final PublicacaoService publicacaoService = new PublicacaoService();
+    private static final LivroCategoriaService livroCategoriaService = new LivroCategoriaService();
+    private static final CategoriaService categoriaService = new CategoriaService();
+    private static final AutorService autorService = new AutorService();
 
-    public void salvarLivro(String titulo, Integer isbn, Boolean disponivel, int copias) {
+    public void salvarLivro(String titulo, Integer isbn, Boolean disponivel, Integer copias, Long categoria, String autor, Integer ano) {
         Livro livro = new Livro();
         livro.setTitulo(titulo);
         livro.setIsbn(isbn);
         livro.setDisponivel(disponivel);
         livro.setNumeroCopias(copias);
 
+
+        Publicacao publicacao = new Publicacao();
+        publicacao.setLivro(livro);
+        publicacao.setAno(ano);
+
+        LivroCategoria livroCategoria = new LivroCategoria();
+        livroCategoria.setLivro(livro);
+
         try {
+            livroCategoria.setCategoria(categoriaService.buscarCategoriaPorId(categoria));
+            Autor autorBook = autorService.buscarAutorPorNome(autor);
+            if(autorBook == null) {
+                autorBook = new Autor();
+                autorBook.setNome(autor);
+                autorService.salvarAutor(autorBook);
+            }
+            publicacao.setAutor(autorBook);
             livroService.salvarLivro(livro);
+            publicacaoService.salvarPublicacao(publicacao);
+            livroCategoriaService.salvarLivroCategoria(livroCategoria);
             logger.info("Livro salvo com sucesso: " + livro);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Erro ao salvar o livro: " + livro, e);
         }
+
     }
 
-    public void editarLivro(Long id, String titulo, Integer isbn, Boolean disponivel, int copias) {
+    public void editarLivro(Long id, String titulo, Integer isbn, Boolean disponivel, int copias, Long autor,Long categoria, Integer ano) {
         Livro livro = new Livro();
-        livro.setId(id);
         livro.setTitulo(titulo);
         livro.setIsbn(isbn);
         livro.setDisponivel(disponivel);
         livro.setNumeroCopias(copias);
 
+        Publicacao publicacao = new Publicacao();
+        publicacao.setLivro(livro);
+
+        publicacao.setAno(ano);
         try {
-            livroService.editarLivro(livro);
+            publicacao.setAutor(autorService.buscarAutorPorId(autor));
+
+            livroService.salvarLivro(livro);
+            publicacaoService.salvarPublicacao(publicacao);
             logger.info("Livro editado com sucesso: " + livro);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Erro ao editar o livro: " + livro, e);

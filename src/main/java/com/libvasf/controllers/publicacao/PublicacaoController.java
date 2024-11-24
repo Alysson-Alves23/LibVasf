@@ -3,6 +3,7 @@ package com.libvasf.controllers.publicacao;
 import com.libvasf.models.Publicacao;
 import com.libvasf.models.Autor;
 import com.libvasf.models.Livro;
+import com.libvasf.services.CategoriaService;
 import com.libvasf.services.PublicacaoService;
 import com.libvasf.services.AutorService;
 import com.libvasf.services.LivroService;
