@@ -1,6 +1,7 @@
 package com.libvasf.services;
 
 import com.libvasf.models.Categoria;
+import com.libvasf.models.Usuario;
 import com.libvasf.utils.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -14,6 +15,20 @@ import java.util.logging.Logger;
 public class CategoriaService {
 
     private static final Logger logger = Logger.getLogger(CategoriaService.class.getName());
+
+    public List<Categoria> buscarCategoriasPorNome(String filtro) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            List<Categoria> categorias = session.createQuery("from Categoria where categoria_nome like :nome", Categoria.class)
+                    .setParameter("nome",filtro+"%").getResultList();
+            logger.info("Listagem de categorias realizada com sucesso. Total: " + categorias.size());
+            return categorias;
+        } catch (HibernateException he) {
+            logger.log(Level.SEVERE, "Erro ao listar categorias: " + he.getMessage(), he);
+            throw he;
+        }
+
+
+    }
 
     @FunctionalInterface
     private interface SessionAction {

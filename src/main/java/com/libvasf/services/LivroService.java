@@ -83,7 +83,16 @@ public class LivroService {
             throw he;
         }
     }
-
+    public List<Livro> listarLivrosPorCategoria( int idCategoria) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            List<Livro> livros = session.createQuery("from Livro where ", Livro.class).setParameter("idCategoria", idCategoria).list();
+            logger.info("Listagem de livros realizada com sucesso. Total: " + livros.size());
+            return livros;
+        } catch (HibernateException he) {
+            logger.log(Level.SEVERE, "Erro ao listar livros: " + he.getMessage(), he);
+            throw he;
+        }
+    }
     /**
      * Busca um livro pelo seu ID.
      *

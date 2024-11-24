@@ -59,6 +59,27 @@ public class LivroCategoriaService {
             throw he;
         }
     }
+    public void removerRelacoesPorCategoria(Long categoriaId) {
+        executeInsideTransaction(session -> {
+            // Executa a exclusão de todas as relações para a categoria fornecida
+            int deletados = session.createQuery("DELETE FROM LivroCategoria WHERE categoria.id = :categoriaId")
+                    .setParameter("categoriaId", categoriaId)
+                    .executeUpdate();
+            logger.info(deletados + " relações removidas para a categoria com ID: " + categoriaId);
+        });
+    }
+
+    public List<LivroCategoria> listarLivroPorCategoria(Long id) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            List<LivroCategoria> livroCategorias = session.createQuery("from LivroCategoria where fk_categoria_id = :categoria", LivroCategoria.class)
+                    .setParameter("categoria", id).list();
+            logger.info("Listagem de LivroCategorias realizada com sucesso. Total: " + livroCategorias.size());
+            return livroCategorias;
+        } catch (HibernateException he) {
+            logger.log(Level.SEVERE, "Erro ao listar LivroCategorias: " + he.getMessage(), he);
+            throw he;
+        }
+    }
 
     public LivroCategoria buscarLivroCategoriaPorId(Long id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
