@@ -11,7 +11,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.io.IOException;
 import java.util.List;
@@ -77,6 +78,19 @@ public class MainController extends ViewController {
     private Label numeroCopiasLabel;
 
     @FXML
+    private TableView<Livro> livrosTable;
+    @FXML
+    private TableColumn<Livro, String> tituloColumn;
+    @FXML
+    private TableColumn<Livro, String> autorColumn;
+    @FXML
+    private TableColumn<Livro, String> isbnColumn;
+    @FXML
+    private TableColumn<Livro, String> categoriaColumn;
+    @FXML
+    private TableColumn<Livro, String> copiasColumn;
+
+    @FXML
     private void initialize() {
         // Existing initializations
         devolucao.setOnMouseClicked(this::handleDevolucao);
@@ -92,6 +106,30 @@ public class MainController extends ViewController {
         // New search initialization
         botaoPesquisar.setOnMouseClicked(this::handlePesquisar);
         limparResultados();
+
+        // Configure table columns
+        tituloColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTitulo()));
+        isbnColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getIsbn().toString()));
+        copiasColumn.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getNumeroCopias())));
+        
+        // Columns that need additional service calls
+        autorColumn.setCellValueFactory(data -> {
+            List<Autor> autores = autorService.listarAutorPorLivroId(data.getValue().getId());
+            return new SimpleStringProperty(autores.isEmpty() ? "Não informado" : autores.get(0).getNome());
+        });
+        
+        categoriaColumn.setCellValueFactory(data -> {
+            List<Categoria> categorias = categoriaService.listarCategoriasPorIdLivro(data.getValue().getId());
+            return new SimpleStringProperty(categorias.isEmpty() ? "Não informado" : categorias.get(0).getNome());
+        });
+
+        // Add selection listener to table
+        livrosTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                // Update details when row is selected
+                updateDetailView(newSelection);
+            }
+        });
     }
 
     private void handlePesquisar(MouseEvent event) {
@@ -108,13 +146,11 @@ public class MainController extends ViewController {
             
             if (livrosEncontrados.isEmpty()) {
                 showAlert("Informação", "Nenhum livro encontrado", Alert.AlertType.INFORMATION);
-                limparResultados();
+                livrosTable.getItems().clear();
                 return;
             }
 
-            // Exibe o primeiro livro encontrado
-            Livro livro = livrosEncontrados.get(0);
-            exibirResultado(livro);
+            exibirResultado(livrosEncontrados);
 
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Erro ao pesquisar livros", e);
@@ -122,22 +158,9 @@ public class MainController extends ViewController {
         }
     }
 
-    private void exibirResultado(Livro livro) {
-        List<Categoria> categorias = categoriaService.listarCategoriasPorIdLivro(livro.getId());
-        List<Autor> autores = autorService.listarAutorPorLivroId(livro.getId());
-
-        System.out.println(categorias.get(0).getNome());
-        nomeLabel.setText("Nome: " + livro.getTitulo());
-        isbnLabel.setText("ISBN: " + livro.getIsbn());
-        categoriaLabel.setText("Categoria: " + categorias.get(0).getNome());
-        autorLabel.setText("Autor: " + autores.get(0).getNome());
-        numeroCopiasLabel.setText("N° de cópias: " + livro.getNumeroCopias());
-        
-        if (!livro.getPublicacoes().isEmpty()) {
-            autorLabel.setText("Autor: " + livro.getPublicacoes().get(0).getAutor().getNome());
-        } else {
-            autorLabel.setText("Autor: Não informado");
-        }
+    private void exibirResultado(List<Livro> livros) {
+        livrosTable.getItems().clear();
+        livrosTable.getItems().addAll(livros);
     }
 
     private void limparResultados() {
@@ -146,6 +169,18 @@ public class MainController extends ViewController {
         isbnLabel.setText("ISBN: ");
         categoriaLabel.setText("Categoria: ");
         numeroCopiasLabel.setText("N° de cópias: ");
+    }
+
+    // Add this method
+    private void updateDetailView(Livro livro) {
+        List<Autor> autores = autorService.listarAutorPorLivroId(livro.getId());
+        List<Categoria> categorias = categoriaService.listarCategoriasPorIdLivro(livro.getId());
+        
+        nomeLabel.setText("Nome: " + livro.getTitulo());
+        autorLabel.setText("Autor: " + (autores.isEmpty() ? "Não informado" : autores.get(0).getNome()));
+        isbnLabel.setText("ISBN: " + livro.getIsbn());
+        categoriaLabel.setText("Categoria: " + (categorias.isEmpty() ? "Não informado" : categorias.get(0).getNome()));
+        numeroCopiasLabel.setText("N° de cópias: " + livro.getNumeroCopias());
     }
 
     // Existing methods remain unchanged

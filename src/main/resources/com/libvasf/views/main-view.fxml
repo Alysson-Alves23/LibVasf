@@ -11,6 +11,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
 
 <AnchorPane prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.MainController">
    <HBox layoutX="0.0" layoutY="0.0" prefHeight="1024.0" prefWidth="1440.0" styleClass="Background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -118,6 +120,15 @@
                   <Label fx:id="numeroCopiasLabel" text="N de cópias: " style="-fx-font-size: 16;" />
                </VBox>
             </HBox>
+            <TableView fx:id="livrosTable" prefHeight="400.0" prefWidth="800.0">
+               <columns>
+                  <TableColumn fx:id="tituloColumn" text="Título" prefWidth="200.0"/>
+                  <TableColumn fx:id="autorColumn" text="Autor" prefWidth="150.0"/>
+                  <TableColumn fx:id="isbnColumn" text="ISBN" prefWidth="100.0"/>
+                  <TableColumn fx:id="categoriaColumn" text="Categoria" prefWidth="150.0"/>
+                  <TableColumn fx:id="copiasColumn" text="N° Cópias" prefWidth="100.0"/>
+               </columns>
+            </TableView>
          </VBox>
       </VBox>
    </HBox>
