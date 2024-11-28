@@ -68,12 +68,7 @@ public class LivroService {
             throw he;
         }
     }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 
-=======
-=======
->>>>>>> Stashed changes
 //    public List<Livro> listarLivrosPorCategoria(String nomeCategoria) {
 //        CategoriaService categoriaService = new CategoriaService();
 //        List<Categoria> categorias = categoriaService.buscarCategoriasPorNome(nomeCategoria);
@@ -97,10 +92,7 @@ public class LivroService {
 //            throw he;
 //        }
 //    }
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
     /**
      * Busca um livro pelo seu ID.
      *
