@@ -70,6 +70,24 @@ public class CategoriaService {
         }
     }
 
+    public List<Categoria> listarCategoriasPorIdLivro(Long id) {
+        System.out.println("tentando buscar categorias para o livro de ID: " + id);
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            List<Categoria> categorias = session.createQuery(
+                "SELECT DISTINCT c FROM Categoria c " +
+                "JOIN LivroCategoria lc ON c.id = lc.categoria.id " +
+                "WHERE lc.livro.id = :id", 
+                Categoria.class)
+                .setParameter("id", id)
+                .getResultList();
+            logger.info("Listagem de categorias realizada com sucesso. Total: " + categorias.size());
+            return categorias;
+        } catch (HibernateException he) {
+            logger.log(Level.SEVERE, "Erro ao listar categorias: " + he.getMessage(), he);
+            throw he;
+        }
+    }
+
     public Categoria buscarCategoriaPorId(Long id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Categoria categoria = session.get(Categoria.class, id);

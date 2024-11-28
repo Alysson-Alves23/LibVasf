@@ -111,11 +111,11 @@
          <VBox alignment="TOP_CENTER" spacing="10.0" style="-fx-padding: 20 50 0 50;">
             <HBox prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: #FFFFFF; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 15;">
                <VBox alignment="CENTER_LEFT" spacing="10.0">
-                  <Label text="Nome: " style="-fx-font-size: 16;" />
-                  <Label text="Autor: " style="-fx-font-size: 16;" />
-                  <Label text="ISBN: " style="-fx-font-size: 16;" />
-                  <Label text="Categoria: " style="-fx-font-size: 16;" />
-                  <Label text="N de cópias: " style="-fx-font-size: 16;" />
+                  <Label fx:id="nomeLabel" text="Nome: " style="-fx-font-size: 16;" />
+                  <Label fx:id="autorLabel" text="Autor: " style="-fx-font-size: 16;" />
+                  <Label fx:id="isbnLabel" text="ISBN: " style="-fx-font-size: 16;" />
+                  <Label fx:id="categoriaLabel" text="Categoria: " style="-fx-font-size: 16;" />
+                  <Label fx:id="numeroCopiasLabel" text="N de cópias: " style="-fx-font-size: 16;" />
                </VBox>
             </HBox>
          </VBox>

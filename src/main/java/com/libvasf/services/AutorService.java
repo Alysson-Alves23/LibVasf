@@ -1,6 +1,7 @@
 package com.libvasf.services;
 
 import com.libvasf.models.Autor;
+import com.libvasf.models.Categoria;
 import com.libvasf.utils.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -9,6 +10,9 @@ import org.hibernate.Transaction;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static com.sun.tools.attach.VirtualMachine.list;
+
 
 public class AutorService {
 
@@ -65,7 +69,24 @@ public class AutorService {
         }
     }
 
-    public Autor buscarAutorPorNome(String nome ){
+    public List<Autor> listarAutorPorLivroId(Long id){
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+            List<Autor> autores = session.createQuery(
+                        "SELECT DISTINCT A FROM Autor A " +
+                            "JOIN Publicacao P ON P.autor.id = A.id " +
+                            "WHERE P.livro.id = :id",
+                            Autor.class)
+                    .setParameter("id", id)
+                    .getResultList();
+            logger.info("Autores encontrados com sucesso.  Total: "+ autores.size());
+            return autores;
+        } catch (HibernateException he){
+            logger.log(Level.SEVERE, "Erro ao buscar os Autores" + he.getMessage(), he);
+            throw he;
+        }
+    }
+
+    public static Autor buscarAutorPorNome(String nome){
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
             Autor autor = session.createQuery("from Autor where nome = :nome", Autor.class)
                     .setParameter("nome", nome)

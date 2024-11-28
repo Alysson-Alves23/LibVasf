@@ -122,8 +122,8 @@ public class LivroService {
      */
     public List<Livro> buscarPorTitulo(String titulo) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            List<Livro> livros = session.createQuery("from Livro where titulo = :titulo", Livro.class)
-                    .setParameter("titulo", titulo)
+            List<Livro> livros = session.createQuery("from Livro where titulo like :titulo", Livro.class)
+                    .setParameter("titulo", "%" + titulo +"%")
                     .list();
             if (!livros.isEmpty()) {
                 logger.info("Livros encontrados pelo título '" + titulo + "': " + livros);

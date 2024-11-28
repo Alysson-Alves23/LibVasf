@@ -1,8 +1,10 @@
 package com.libvasf.controllers.livro;
 
 import com.libvasf.controllers.ViewController;
+import com.libvasf.models.Autor;
 import com.libvasf.models.Categoria;
 import com.libvasf.controllers.livro.LivroController;
+import com.libvasf.services.AutorService;
 import com.libvasf.services.CategoriaService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -78,23 +80,25 @@ public class RegistrarLivro extends ViewController {
     public void salvarLivro(MouseEvent event) {
         try {
             String tituloLivro = titulo.getText();
+            String autorLivro = autor.getText();
             Integer isbnLivro = Integer.parseInt(isbn.getText());
             Categoria categoriaSelecionada = categoria.getValue();
             Integer numeroCopias = Integer.parseInt(copias.getText());
             Integer anoPublicacao = Integer.parseInt(ano.getText());
 
-            if (tituloLivro.isEmpty() || categoriaSelecionada == null) {
+            if (tituloLivro.isEmpty() || categoriaSelecionada == null || autorLivro.isEmpty()) {
                 showAlert("Campos obrigatórios", "Preencha todos os campos obrigatórios.", Alert.AlertType.WARNING);
                 return;
             }
-
+            Autor autor = AutorService.buscarAutorPorNome(autorLivro);
+            System.out.println(autor);
             livroController.salvarLivro(
                     tituloLivro,
                     isbnLivro,
                     true, // Assumindo que o livro está disponível no cadastro inicial
                     numeroCopias,
                     categoriaSelecionada.getId(), // Obtemos o ID da categoria
-                    autor.getText(),
+                    autorLivro,
                     anoPublicacao
             );
 

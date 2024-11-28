@@ -8,6 +8,7 @@ module com.libvasf{
     requires java.sql;
     requires org.jboss.jandex;
     requires org.slf4j;
+    requires jdk.attach;
 
     opens com.libvasf.models to org.hibernate.orm.core;
     opens com.libvasf.controllers to javafx.fxml;

@@ -46,6 +46,15 @@ public class CategoriaController {
         }
     }
 
+    public List<Categoria> buscarCategoriaPorLivro(Long livroId) {
+        try {
+            return categoriaService.listarCategoriasPorIdLivro(livroId);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Erro ao buscar a categoria por livro: " + livroId, e);
+            return null;
+        }
+    }
+
     public List<Categoria> listarCategorias() {
         try {
             return categoriaService.listarCategorias();
