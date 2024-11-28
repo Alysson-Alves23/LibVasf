@@ -3,6 +3,7 @@ import com.libvasf.MainApplication;
 import com.libvasf.models.Autor;
 import com.libvasf.models.Categoria;
 import com.libvasf.models.Livro;
+import com.libvasf.models.Publicacao;
 import com.libvasf.services.AutorService;
 import com.libvasf.services.CategoriaService;
 import com.libvasf.services.LivroService;
@@ -18,6 +19,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.ArrayList;
 
 public class MainController extends ViewController {
     private static final Logger logger = Logger.getLogger(MainController.class.getName());
@@ -44,8 +47,6 @@ public class MainController extends ViewController {
     @FXML
     private TextField autor;
     @FXML
-    private TextField editora;
-    @FXML
     private TextField ano;
     @FXML
     private CheckBox ficcao;
@@ -59,8 +60,6 @@ public class MainController extends ViewController {
     private CheckBox cientificos;
     @FXML
     private CheckBox ordenarAutor;
-    @FXML
-    private CheckBox ordenarEditora;
     @FXML
     private CheckBox ordenarAno;
     @FXML
@@ -89,6 +88,7 @@ public class MainController extends ViewController {
     private TableColumn<Livro, String> categoriaColumn;
     @FXML
     private TableColumn<Livro, String> copiasColumn;
+
 
     @FXML
     private void initialize() {
@@ -134,15 +134,17 @@ public class MainController extends ViewController {
 
     private void handlePesquisar(MouseEvent event) {
         String termoPesquisa = pesquisarLivros.getText().trim();
-        System.out.println("Termo de pesquisa: " + termoPesquisa);
+        String autorPesquisa = autor.getText().trim();
+        String anoPesquisa = ano.getText().trim();
         
-        if (termoPesquisa.isEmpty()) {
-            showAlert("Aviso", "Digite um termo para pesquisar", Alert.AlertType.WARNING);
-            return;
-        }
-
         try {
             List<Livro> livrosEncontrados = livroService.buscarPorTitulo(termoPesquisa);
+            
+            // Apply filters
+            livrosEncontrados = aplicarFiltros(livrosEncontrados);
+            
+            // Apply sorting
+            livrosEncontrados = aplicarOrdenacao(livrosEncontrados);
             
             if (livrosEncontrados.isEmpty()) {
                 showAlert("Informação", "Nenhum livro encontrado", Alert.AlertType.INFORMATION);
@@ -156,6 +158,81 @@ public class MainController extends ViewController {
             logger.log(Level.SEVERE, "Erro ao pesquisar livros", e);
             showAlert("Erro", "Erro ao realizar a pesquisa", Alert.AlertType.ERROR);
         }
+    }
+
+    private List<Livro> aplicarFiltros(List<Livro> livros) {
+        return livros.stream()
+            .filter(livro -> {
+                // Filter by autor if specified
+                if (!autor.getText().trim().isEmpty()) {
+                    List<Autor> autores = autorService.listarAutorPorLivroId(livro.getId());
+                    boolean autorMatch = autores.stream()
+                        .anyMatch(a -> a.getNome().toLowerCase()
+                        .contains(autor.getText().toLowerCase()));
+                    if (!autorMatch) return false;
+                }
+                
+                // Filter by ano if specified
+                if (!ano.getText().trim().isEmpty()) {
+                    boolean anoMatch = livro.getPublicacoes().stream()
+                        .anyMatch(p -> p.getAno().toString().equals(ano.getText()));
+                    if (!anoMatch) return false;
+                }
+                
+                // Filter by categoria
+                if (ficcao.isSelected() || didaticos.isSelected() || 
+                    academicos.isSelected() || literatura.isSelected() || 
+                    cientificos.isSelected()) {
+                    
+                    List<Categoria> categorias = categoriaService.listarCategoriasPorIdLivro(livro.getId());
+                    boolean categoriaMatch = categorias.stream()
+                        .anyMatch(c -> (ficcao.isSelected() && c.getNome().equals("ficcao")) ||
+                                     (didaticos.isSelected() && c.getNome().equals("didaticos")) ||
+                                     (academicos.isSelected() && c.getNome().equals("academicos")) ||
+                                     (literatura.isSelected() && c.getNome().equals("literatura")) ||
+                                     (cientificos.isSelected() && c.getNome().equals("cientificos")));
+                    if (!categoriaMatch) return false;
+                }
+                
+                return true;
+            })
+            .collect(Collectors.toList());
+    }
+
+    private List<Livro> aplicarOrdenacao(List<Livro> livros) {
+        List<Livro> livrosOrdenados = new ArrayList<>(livros);
+        
+        if (ordenarAutor.isSelected()) {
+            livrosOrdenados.sort((l1, l2) -> {
+                String autor1 = autorService.listarAutorPorLivroId(l1.getId())
+                    .stream().map(Autor::getNome).findFirst().orElse("");
+                String autor2 = autorService.listarAutorPorLivroId(l2.getId())
+                    .stream().map(Autor::getNome).findFirst().orElse("");
+                return autor1.compareTo(autor2);
+            });
+        }
+        
+        if (ordenarAno.isSelected()) {
+            livrosOrdenados.sort((l1, l2) -> {
+                Integer ano1 = l1.getPublicacoes().stream()
+                    .map(Publicacao::getAno).findFirst().orElse(0);
+                Integer ano2 = l2.getPublicacoes().stream()
+                    .map(Publicacao::getAno).findFirst().orElse(0);
+                return ano1.compareTo(ano2);
+            });
+        }
+        
+        if (ordenarCategoria.isSelected()) {
+            livrosOrdenados.sort((l1, l2) -> {
+                String cat1 = categoriaService.listarCategoriasPorIdLivro(l1.getId())
+                    .stream().map(Categoria::getNome).findFirst().orElse("");
+                String cat2 = categoriaService.listarCategoriasPorIdLivro(l2.getId())
+                    .stream().map(Categoria::getNome).findFirst().orElse("");
+                return cat1.compareTo(cat2);
+            });
+        }
+        
+        return livrosOrdenados;
     }
 
     private void exibirResultado(List<Livro> livros) {
