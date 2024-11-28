@@ -12,20 +12,22 @@ public class ClienteController {
     private static final Logger logger = Logger.getLogger(ClienteController.class.getName());
     private static final ClienteService clienteService = new ClienteService();
 
-    public void salvarCliente(String nome, String cpf, String email, String telefone, String senha) {
+    public boolean salvarCliente(String nome, String cpf, String email, String telefone) {
         Cliente cliente = new Cliente();
         cliente.setNome(nome);
         cliente.setCpf(cpf);
         cliente.setEmail(email);
         cliente.setTelefone(telefone);
-        cliente.setSenha(senha);
 
         try {
             clienteService.salvarCliente(cliente);
             logger.info("Cliente salvo com sucesso: " + cliente);
         } catch (Exception e) {
+
             logger.log(Level.SEVERE, "Erro ao salvar o cliente: " + cliente, e);
+            return false;
         }
+        return true;
     }
 
     public void editarCliente(Long id, String nome, String cpf, String email, String telefone, String senha) {

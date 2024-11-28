@@ -17,11 +17,15 @@ public class MainController extends ViewController {
     public Hyperlink cadastrarUsuario;
     public Hyperlink sairLink;
     public ImageView sairImg;
+    public Hyperlink devolucao;
+    public Hyperlink emprestimo;
 
 
     @FXML
     private void initialize() {
 
+        devolucao.setOnMouseClicked(this::handleDevolucao);
+        emprestimo.setOnMouseClicked(this::handleEmprestimo);
         gerenciarLivros.setOnMouseClicked(this::handleGerenciarLivros);
         gerenciarUsuario.setOnMouseClicked(this::handleGerenciarUsuarios);
         cadastrarLivro.setOnMouseClicked(this::handleCadastrarLivros);
@@ -33,15 +37,33 @@ public class MainController extends ViewController {
     }
     @FXML
     private void handleCadastrarCliente(MouseEvent event) {
+        goTo("Libvasf","client-register");
+    }
+    @FXML
+    private void handleDevolucao(MouseEvent event) {
+        goTo("Libvasf","return-book-view");
+
+    }
+    @FXML
+    private void handleEmprestimo(MouseEvent event) {
+        goTo("Libvasf","lend-book-view");
+
     }
     @FXML
     private void handleGerenciarLivros(MouseEvent event) {
+        goTo("Libvasf","gerenciar-categoria-view");
     }
     @FXML
     private void handleCadastrarLivros(MouseEvent event) {
+        goTo("Libvasf","book-register-view");
     }
     @FXML
     private void handleGerenciarUsuarios(MouseEvent event) {
+        if(MainApplication.getCurrentUser().getIsAdmin() != 0) {
+            goTo("Gerenciar Usuário","list-user-view");
+        }else{
+            showAlert("Erro","Você não tem premissão para acessar essa função!", Alert.AlertType.ERROR);
+        }
 
     }
     @FXML

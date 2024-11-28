@@ -6,6 +6,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,6 +59,27 @@ public class LivroCategoriaService {
             throw he;
         }
     }
+    public void removerRelacoesPorCategoria(Long categoriaId) {
+        executeInsideTransaction(session -> {
+            // Executa a exclusão de todas as relações para a categoria fornecida
+            int deletados = session.createQuery("DELETE FROM LivroCategoria WHERE categoria.id = :categoriaId")
+                    .setParameter("categoriaId", categoriaId)
+                    .executeUpdate();
+            logger.info(deletados + " relações removidas para a categoria com ID: " + categoriaId);
+        });
+    }
+
+    public List<LivroCategoria> listarLivroPorCategoria(Long id) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            List<LivroCategoria> livroCategorias = session.createQuery("from LivroCategoria where fk_categoria_id = :categoria", LivroCategoria.class)
+                    .setParameter("categoria", id).list();
+            logger.info("Listagem de LivroCategorias realizada com sucesso. Total: " + livroCategorias.size());
+            return livroCategorias;
+        } catch (HibernateException he) {
+            logger.log(Level.SEVERE, "Erro ao listar LivroCategorias: " + he.getMessage(), he);
+            throw he;
+        }
+    }
 
     public LivroCategoria buscarLivroCategoriaPorId(Long id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -73,6 +95,27 @@ public class LivroCategoriaService {
             throw he;
         }
     }
+    public LivroCategoria buscarLivroCategoriaPorRelacionamento(long livroId, long categoriaId) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            TypedQuery<LivroCategoria> query = session.createQuery(
+                    "SELECT lc FROM LivroCategoria lc WHERE lc.livro.id = :livroId AND lc.categoria.id = :categoriaId",
+                    LivroCategoria.class
+            );
+            query.setParameter("livroId", livroId);
+            query.setParameter("categoriaId", categoriaId);
+
+            List<LivroCategoria> resultados = query.getResultList();
+
+            if (resultados.isEmpty()) {
+                return null; // ou lançar uma exceção indicando que nenhum resultado foi encontrado.
+            }  else {
+                return resultados.get(0);
+            }
+        } catch (HibernateException he) {
+            logger.log(Level.SEVERE, "Erro ao buscar LivroCategoria: " + he.getMessage(), he);
+            throw he;
+        }
+    }
 
     public void removerLivroCategoria(Long id) {
         executeInsideTransaction(session -> {
@@ -85,6 +128,7 @@ public class LivroCategoriaService {
             }
         });
     }
+
     public void editarLivroCategoria(LivroCategoria livroCategoria) {
         if (livroCategoria.getLivro() == null) {
             throw new IllegalArgumentException("Livro não pode ser nulo");

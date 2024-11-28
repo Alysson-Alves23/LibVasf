@@ -53,6 +53,33 @@ public class UsuarioService {
             throw he;
         }
     }
+    public List<Usuario> buscarUsuarioPorEmailPartial(String email) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            List<Usuario> usuarios = session.createQuery("from Usuario where email like :email", Usuario.class)
+                    .setParameter("email", email + "%")
+                    .getResultList();
+
+            if (!usuarios.isEmpty()) {
+                logger.info("Usuários encontrados com e-mails começando por '" + email + "': " + usuarios);
+            } else {
+                logger.warning("Nenhum usuário encontrado com e-mails começando por '" + email + "'");
+            }
+
+            return usuarios;
+        } catch (HibernateException he) {
+            logger.log(Level.SEVERE, "Erro ao buscar usuários por e-mails começando por '" + email + "': " + he.getMessage(), he);
+            throw he;
+        }
+    }
+
+    public boolean atualizarUsuario(Usuario usuario) {
+
+        executeInsideTransaction(session -> {
+            session.update(usuario);
+            logger.info("Usuário atualizado com sucesso: " + usuario);
+        });
+        return false;
+    }
 
     @FunctionalInterface
     private interface SessionAction {
@@ -140,11 +167,17 @@ public class UsuarioService {
         executeInsideTransaction(session -> {
             Usuario usuario = session.get(Usuario.class, id);
             if (usuario != null) {
-                session.delete(usuario);
-                logger.info("Usuário removido com sucesso: " + usuario);
+                try {
+                    session.delete(usuario); // Hibernate tratará da exclusão em cascata
+                    logger.info("Usuário e todas as referências removidos com sucesso: " + usuario);
+                } catch (Exception e) {
+                    logger.log(Level.SEVERE, "Erro ao remover o usuário com o ID " + id, e);
+                    throw new RuntimeException("Erro ao remover usuário e referências.", e);
+                }
             } else {
                 logger.warning("Nenhum usuário encontrado para remover com o ID " + id);
             }
         });
     }
+
 }

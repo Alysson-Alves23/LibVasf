@@ -1,92 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.usuario.viewControllers.ListarUsuariosController">
-   <children>
-      <HBox layoutX="93.0" layoutY="116.0" prefHeight="1024.0" prefWidth="1440.0" styleClass="Background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <VBox alignment="TOP_CENTER" prefHeight="1024.0" prefWidth="410.0" spacing="71.0" style="-fx-background-color: WHITE;">
-               <children>
-                  <ImageView fitHeight="177.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets bottom="10.0" top="40.0" />
-                     </VBox.margin>
-                     <image>
-                        <Image url="@../../../assets/Logo.png" />
-                     </image>
-                  </ImageView>
-                  <VBox maxHeight="409.0" maxWidth="240.0" prefHeight="409.0" prefWidth="240.0" spacing="23.0">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <children>
-                        <Hyperlink fx:id="cadastrarLivro" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Cadastrar Livro">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Hyperlink>
-                        <Hyperlink fx:id="cadastrarUsuario" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Cadastrar Usuario">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Hyperlink>
-                        <Hyperlink fx:id="cadastrarCliente" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Cadastrar Cliente">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Hyperlink>
-                        <Hyperlink fx:id="gerenciarLivros" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Gerenciamento de Livros">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Hyperlink>
-                        <Hyperlink maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Relatório">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Hyperlink>
-                     </children>
-                  </VBox>
-                  <HBox id="sair" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-                     <VBox.margin>
-                        <Insets top="71.0" />
-                     </VBox.margin>
-                     <children>
-                        <ImageView fx:id="sairImg" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../assets/back-icon.png" />
-                           </image>
-                        </ImageView>
-                        <Hyperlink fx:id="sairLink" maxHeight="52.0" maxWidth="240.0" prefHeight="52.0" prefWidth="124.0" styleClass="NavLink" text="Sair">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets right="60.0" />
-                           </HBox.margin>
-                        </Hyperlink>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <VBox prefHeight="1024.0" prefWidth="1037.0">
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0" />
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-   </children>
+<AnchorPane prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.usuario.viewControllers.ListarUsuariosController">
+    <children>
+        <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #f4f0eb;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox maxWidth="400.0" spacing="10.0" style="-fx-background-color: #ffffff; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 20;">
+                    <!-- Campo para pesquisar usuário -->
+                    <VBox spacing="10.0">
+                        <Text style="-fx-font-size: 14; -fx-font-weight: bold;" text="Pesquisar cliente" />
+                        <HBox spacing="10.0">
+                            <TextField fx:id="pesquisarField" promptText="Nome" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" />
+                            <Button style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" text="🔍" />
+                        </HBox>
+                    </VBox>
+                    <VBox spacing="10.0">
+                        <Text style="-fx-font-size: 14; -fx-font-weight: bold;" text="Usuários" />
+                        <ListView fx:id="usuariosListView" prefHeight="200.0" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" />
+                    </VBox>
+                    <HBox alignment="CENTER" spacing="255.0">
+                        <Button fx:id="sair" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" text="Voltar" />
+                  <Button fx:id="editarButton" layoutX="321.0" layoutY="10.0" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" text="Editar" />
+                    </HBox>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>

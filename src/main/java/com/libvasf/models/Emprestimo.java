@@ -33,6 +33,9 @@ public class Emprestimo {
     @Column(name = "IsActive", nullable = false)
     private boolean isActive;
 
+    @Column(name = "devolucao_datetime", nullable = true)
+    private LocalDateTime dataHoraDevolucao;
+
     public Long getId() {
         return id;
     }
@@ -81,9 +84,12 @@ public class Emprestimo {
         this.dataHoraFim = dataHoraFim;
     }
 
-    public void setDataEmprestimo(LocalDate now) {
+    public void setDataHoraDevolucao(LocalDateTime dataHoraDevolucao) {
+        this.dataHoraDevolucao = dataHoraDevolucao;
     }
-
+    public LocalDateTime getDataHoraDevolucao() {
+        return dataHoraDevolucao;
+    }
     public boolean isClosed() {
         return !this.isActive;
     }

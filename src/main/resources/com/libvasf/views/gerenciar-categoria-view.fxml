@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.categoria.GerenciarCategorias">
+    <children>
+        <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #f4f0eb;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" >
+            <children>
+                <VBox maxWidth="400.0" prefHeight="424.0" prefWidth="400.0" spacing="10.0" style="-fx-background-color: #ffffff; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 20;">
+                    <!-- Campo para pesquisar usuário -->
+                    <VBox spacing="10.0">
+                        <Text style="-fx-font-size: 14; -fx-font-weight: bold;" text="Pesquisar Categoria" />
+                        <HBox spacing="10.0">
+                            <TextField fx:id="pesquisarField" promptText="Nome" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" />
+                            <Button fx:id="pesquisar" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" text="🔍" />
+                        </HBox>
+                    </VBox>
+                    <!-- Lista de usuários -->
+                    <VBox spacing="10.0">
+                        <Text style="-fx-font-size: 14; -fx-font-weight: bold;" text="Categorias" />
+                        <ListView fx:id="categoriasListView" prefHeight="150.0" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="360.0">
+                     <children>
+                              <Button fx:id="excluir" style="-fx-background-color: red; -fx-border-radius: 5; -fx-text-fill: white;" text="Excluir" />
+                     </children>
+                  </HBox>
+                    </VBox>
+                    <!-- Informações do usuário -->
+                    <VBox alignment="CENTER" prefHeight="46.0" prefWidth="308.0" spacing="10.0" style="-fx-background-color: #e8dfd2; -fx-border-radius: 10; -fx-padding: 2;">
+                        <TextField fx:id="nomeField" prefHeight="42.0" prefWidth="291.0" promptText="Nova Categoria" style="-fx-background-color: #ffffff; -fx-border-radius: 5;" />
+                    </VBox>
+                    <!-- Botão Editar -->
+                    <HBox alignment="CENTER" spacing="255.0">
+                  <children>
+                           <Button fx:id="sair" minWidth="70.0" prefWidth="52.0" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" text="Voltar">
+                        <font>
+                           <Font name="Ebrima" size="12.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="adicionarCategoria" minWidth="70.0" prefWidth="52.0" style="-fx-background-color: #e8dfd2; -fx-border-radius: 5;" text="Adicionar">
+                        <font>
+                           <Font name="Ebrima" size="12.0" />
+                        </font>
+                     </Button>
+                  </children>
+                    </HBox>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

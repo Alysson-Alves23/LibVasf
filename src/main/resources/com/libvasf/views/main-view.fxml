@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.MainController">
-   <HBox layoutX="83.0" layoutY="106.0" prefHeight="1024.0" prefWidth="1440.0" styleClass="Background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <VBox alignment="TOP_CENTER" prefHeight="1024.0" prefWidth="410.0" spacing="71.0" style="-fx-background-color: WHITE;">
+<AnchorPane prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.MainController">
+   <HBox layoutX="0.0" layoutY="0.0" prefHeight="1024.0" prefWidth="1440.0" styleClass="Background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" prefHeight="1024.0" prefWidth="451.0" spacing="71.0" style="-fx-background-color: WHITE;">
          <ImageView fitHeight="177.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true">
             <VBox.margin>
                <Insets bottom="10.0" top="40.0" />
@@ -19,63 +22,103 @@
             <Image url="@../../../assets/Logo.png" />
          </ImageView>
          <VBox maxHeight="409.0" maxWidth="240.0" prefHeight="409.0" prefWidth="240.0" spacing="23.0">
-            <VBox.margin>
-               <Insets />
-            </VBox.margin>
             <Hyperlink fx:id="cadastrarLivro" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Cadastrar Livro">
                <font>
                   <Font size="20.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="cadastrarUsuario" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Cadastrar Usuario">
+            <Hyperlink fx:id="cadastrarUsuario" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Cadastrar Usuário">
                <font>
                   <Font size="20.0" />
                </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
             </Hyperlink>
             <Hyperlink fx:id="cadastrarCliente" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Cadastrar Cliente">
                <font>
                   <Font size="20.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="gerenciarLivros" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Gerenciamento de Livros">
+            <Hyperlink fx:id="devolucao" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Devolução">
                <font>
                   <Font size="20.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="gerenciarUsuario" maxHeight="82.0" maxWidth="240.0" prefWidth="240.0" styleClass="NavLink" text="Gerenciamento de Usuarios" textOverrun="CLIP" wrapText="true">
+            <Hyperlink fx:id="emprestimo" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Empréstimo">
                <font>
                   <Font size="20.0" />
                </font>
             </Hyperlink>
-            <Hyperlink maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Relatório">
+            <Hyperlink fx:id="gerenciarLivros" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Gerenciar Livros">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="gerenciarUsuario" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Gerenciar Usuários">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="relatorio" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Relatório">
                <font>
                   <Font size="20.0" />
                </font>
             </Hyperlink>
          </VBox>
-         <HBox id="sair" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-            <VBox.margin>
-               <Insets top="71.0" />
-            </VBox.margin>
-            <children>
-               <ImageView fx:id="sairImg" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../../../assets/back-icon.png" />
-                  </image>
-               </ImageView>
-               <Hyperlink fx:id="sairLink" maxHeight="52.0" maxWidth="240.0" prefHeight="52.0" prefWidth="124.0" styleClass="NavLink" text="Sair">
-                  <font>
-                     <Font size="20.0" />
-                  </font>
-                  <HBox.margin>
-                     <Insets right="60.0" />
-                  </HBox.margin>
-               </Hyperlink>
-            </children>
+         <HBox id="sair" alignment="CENTER" spacing="20.0">
+            <ImageView fx:id="sairImg" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/back-icon.png" />
+               </image>
+            </ImageView>
+            <Hyperlink fx:id="sairLink" maxHeight="52.0" maxWidth="240.0" styleClass="NavLink" text="Sair">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Hyperlink>
          </HBox>
+      </VBox>
+      <VBox alignment="TOP_CENTER" prefHeight="1024.0" prefWidth="989.0" spacing="20.0">
+         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="989.0" style="-fx-padding: 50 0 0 0;">
+            <TextField fx:id="pesquisarLivros" promptText="Pesquisar livros..." prefHeight="36.0" prefWidth="800.0"
+                       style="-fx-background-color: #FFFFFF; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 5;" />
+            <Button fx:id="botaoPesquisar" text="Pesquisar" prefHeight="36.0" prefWidth="120.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 5;" />
+         </HBox>
+         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="989.0" style="-fx-padding: 10 0 0 50;">
+            <Label text="Filtros:" style="-fx-font-size: 16; -fx-text-fill: #000000;" />
+         </HBox>
+         <HBox spacing="20.0" style="-fx-padding: 0 0 0 50;">
+            <TextField fx:id="autor" promptText="Autor" prefHeight="36.0" prefWidth="200.0"
+                       style="-fx-background-color: #FFFFFF; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 5;" />
+            <TextField fx:id="editora" promptText="Editora" prefHeight="36.0" prefWidth="200.0"
+                       style="-fx-background-color: #FFFFFF; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 5;" />
+            <TextField fx:id="ano" promptText="Ano" prefHeight="36.0" prefWidth="200.0"
+                       style="-fx-background-color: #FFFFFF; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 5;" />
+            <VBox spacing="10.0">
+               <Label text="Categoria" style="-fx-font-size: 16; -fx-text-fill: #000000;" />
+               <CheckBox text="Ficção" fx:id="ficcao" />
+               <CheckBox text="Didáticos" fx:id="didaticos" />
+               <CheckBox text="Acadêmicos" fx:id="academicos" />
+               <CheckBox text="Literatura" fx:id="literatura" />
+               <CheckBox text="Científicos" fx:id="cientificos" />
+            </VBox>
+         </HBox>
+         <HBox spacing="20.0" style="-fx-padding: -40 0 0 50;">
+            <Label text="Ordenar por:" style="-fx-font-size: 16; -fx-text-fill: #000000;" />
+            <CheckBox text="Autor" fx:id="ordenarAutor" />
+            <CheckBox text="Editora" fx:id="ordenarEditora" />
+            <CheckBox text="Ano" fx:id="ordenarAno" />
+            <CheckBox text="Categoria" fx:id="ordenarCategoria" />
+         </HBox>
+         <VBox alignment="TOP_CENTER" spacing="10.0" style="-fx-padding: 20 50 0 50;">
+            <HBox prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: #FFFFFF; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 15;">
+               <VBox alignment="CENTER_LEFT" spacing="10.0">
+                  <Label text="Nome: " style="-fx-font-size: 16;" />
+                  <Label text="Autor: " style="-fx-font-size: 16;" />
+                  <Label text="ISBN: " style="-fx-font-size: 16;" />
+                  <Label text="Categoria: " style="-fx-font-size: 16;" />
+                  <Label text="N de cópias: " style="-fx-font-size: 16;" />
+               </VBox>
+            </HBox>
+         </VBox>
       </VBox>
    </HBox>
 </AnchorPane>
