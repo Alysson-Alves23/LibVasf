@@ -1,11 +1,13 @@
 package com.libvasf.services;
 
+import com.libvasf.models.Categoria;
 import com.libvasf.models.Livro;
 import com.libvasf.utils.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,7 +68,39 @@ public class LivroService {
             throw he;
         }
     }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+=======
+>>>>>>> Stashed changes
+//    public List<Livro> listarLivrosPorCategoria(String nomeCategoria) {
+//        CategoriaService categoriaService = new CategoriaService();
+//        List<Categoria> categorias = categoriaService.buscarCategoriasPorNome(nomeCategoria);
+//
+//        if (categorias.isEmpty()) {
+//            logger.warning("Nenhuma categoria encontrada com o nome: " + nomeCategoria);
+//            return Collections.emptyList();
+//        }
+//
+//        Categoria categoria = categorias.get(0); // Assuming we take the first matching category
+//        Long idCategoria = categoria.getId();
+//
+//        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+//            List<Livro> livros = session.createQuery("from Livro where categoria = categoria", Livro.class)
+//                    .setParameter("idCategoria", idCategoria)
+//                    .list();
+//            logger.info("Listagem de livros realizada com sucesso. Total: " + livros.size());
+//            return livros;
+//        } catch (HibernateException he) {
+//            logger.log(Level.SEVERE, "Erro ao listar livros: " + he.getMessage(), he);
+//            throw he;
+//        }
+//    }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     /**
      * Busca um livro pelo seu ID.
      *
