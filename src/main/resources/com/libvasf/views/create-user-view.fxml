@@ -14,76 +14,75 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1024.0" maxWidth="1440.0" prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.usuario.viewControllers.CriarUsuarioController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../../../Style/global.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.libvasf.controllers.usuario.viewControllers.CriarUsuarioController">
    <children>
-      <HBox alignment="CENTER" maxHeight="1024.0" maxWidth="1440.0" prefHeight="1024.0" prefWidth="1440.0" styleClass="Background">
+      <HBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" styleClass="Background">
          <children>
-            <VBox alignment="CENTER" maxHeight="782.0" maxWidth="1152.0" prefHeight="782.0" prefWidth="1152.0" spacing="70.0" style="-fx-background-color: ffffff;">
+            <VBox alignment="CENTER" prefHeight="550.0" prefWidth="600.0" spacing="30.0" style="-fx-background-color: ffffff;">
                <children>
-
-                  <StackPane alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="760.0">
-                     <TextField fx:id="nameField" maxHeight="64.0" maxWidth="760.0" prefHeight="64.0" prefWidth="760.0" promptText="Nome" styleClass="TextField">
+                  <StackPane alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="450.0">
+                     <TextField fx:id="nameField" prefHeight="45.0" prefWidth="450.0" promptText="Nome" styleClass="TextField">
                         <font>
-                           <Font size="20.0" />
+                           <Font size="16.0" />
                         </font>
                      </TextField>
-                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
                         <image>
                            <Image url="@../../../assets/user.png" />
                         </image>
                      </ImageView>
                   </StackPane>
 
-                  <StackPane alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="760.0">
-                     <TextField fx:id="emailField" maxHeight="64.0" maxWidth="760.0" prefHeight="64.0" prefWidth="760.0" promptText="email" styleClass="TextField">
+                  <StackPane alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="450.0">
+                     <TextField fx:id="emailField" prefHeight="45.0" prefWidth="450.0" promptText="email" styleClass="TextField">
                         <font>
-                           <Font size="20.0" />
+                           <Font size="16.0" />
                         </font>
                      </TextField>
-                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
                         <image>
                            <Image url="@../../../assets/email.png" />
                         </image>
                      </ImageView>
                   </StackPane>
 
-                  <StackPane alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="760.0">
-                     <PasswordField fx:id="passwordField" maxHeight="64.0" maxWidth="760.0" prefHeight="64.0" prefWidth="760.0" promptText="senha" styleClass="TextField">
+                  <StackPane alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="450.0">
+                     <PasswordField fx:id="passwordField" prefHeight="45.0" prefWidth="450.0" promptText="senha" styleClass="TextField">
                         <font>
-                           <Font size="20.0" />
+                           <Font size="16.0" />
                         </font>
                      </PasswordField>
-                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
                         <image>
                            <Image url="@../../../assets/password.png" />
                         </image>
                      </ImageView>
                   </StackPane>
 
-                  <HBox alignment="CENTER" prefHeight="55.0" prefWidth="760.0" spacing="375.0">
+                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="450.0" spacing="200.0">
                      <children>
                         <CheckBox fx:id="isAdmin" mnemonicParsing="false" text="Admin" />
-                        <Button fx:id="cadastrar" maxHeight="61.0" maxWidth="310.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="310.0" text="Cadastrar" />
+                        <Button fx:id="cadastrar" prefHeight="40.0" prefWidth="120.0" text="Cadastrar" />
                      </children>
                   </HBox>
                </children>
                <padding>
-                  <Insets left="196.0" right="196.0" />
+                  <Insets left="50.0" right="50.0" />
                </padding>
             </VBox>
          </children>
       </HBox>
 
-      <HBox id="sair" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+      <HBox id="sair" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="150.0" spacing="10.0">
          <children>
-            <ImageView fx:id="sairImg" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="sairImg" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../assets/back-icon.png" />
                </image>
             </ImageView>
-            <Hyperlink fx:id="sairLink" maxHeight="52.0" maxWidth="240.0" prefHeight="52.0" prefWidth="124.0" styleClass="NavLink" text="Sair">
+            <Hyperlink fx:id="sairLink" prefHeight="30.0" prefWidth="80.0" styleClass="NavLink" text="Sair">
                <font>
-                  <Font size="20.0" />
+                  <Font size="16.0" />
                </font>
             </Hyperlink>
          </children>
