@@ -9,6 +9,9 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.spi.ClassLoaderAccess;
 import org.hibernate.cfg.Configuration;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class HibernateUtil {
 
     private static final SessionFactory sessionFactory;
@@ -76,8 +79,8 @@ public class HibernateUtil {
             if (usuarioRoot == null) {
                 Usuario root = new Usuario();
                 root.setNome("root");
-                root.setEmail("root@admin.com");
-                root.setSenha("root");
+                root.setEmail("root");
+                root.setSenha(hashMD5("root"));
                 root.setIsAdmin(1);
 
                 session.save(root);
@@ -95,4 +98,25 @@ public class HibernateUtil {
             e.printStackTrace();
         }
     }
+
+    private static String hashMD5(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] digest = md.digest(password.getBytes());
+            StringBuilder hexString = new StringBuilder();
+
+            for (byte b : digest) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Erro ao gerar hash MD5: " + e.getMessage(), e);
+        }
+    }
+
 }
